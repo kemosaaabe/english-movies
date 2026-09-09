@@ -1,3 +1,6 @@
 export const millisecondsPerSecond = 1000;
-export const playbackEndTolerance = 0.04;
 export const wordSeparatorPattern = /\s+/;
+export const clipStartPadding = 500;
+export const dialogueMarkerPattern = /(^|\s)-\s/g;
+export const minimumDialogueMarkerCount = 2;
+export const multiSpeakerEndPadding = 1600;

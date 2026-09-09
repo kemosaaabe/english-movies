@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { millisecondsPerSecond, playbackEndTolerance } from '../../constants';
+import { millisecondsPerSecond } from '../../constants';
 import type { UseSegmentPlaybackOptions, UseSegmentPlaybackResult } from '../types';
 
 export const useSegmentPlayback = ({ endTime, startTime, videoRef }: UseSegmentPlaybackOptions): UseSegmentPlaybackResult => {
@@ -22,7 +22,7 @@ export const useSegmentPlayback = ({ endTime, startTime, videoRef }: UseSegmentP
   const handleTimeUpdate = useCallback((): void => {
     const video = videoRef.current;
 
-    if (video && video.currentTime >= endTime / millisecondsPerSecond - playbackEndTolerance) {
+    if (video && video.currentTime >= endTime / millisecondsPerSecond) {
       video.pause();
     }
   }, [endTime, videoRef]);

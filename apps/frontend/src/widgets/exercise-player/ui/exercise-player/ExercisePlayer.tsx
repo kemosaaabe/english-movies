@@ -4,7 +4,7 @@ import { useExerciseStore } from '@features/exercise';
 import { normalizeWord, sanitizeWord } from '@shared/lib/normalize-word';
 import { Button } from '@shared/ui/button';
 import { millisecondsPerSecond, wordSeparatorPattern } from '../../constants';
-import { useSegmentPlayback } from '../../model';
+import { getPlaybackEndTime, getPlaybackStartTime, useSegmentPlayback } from '../../model';
 import { WordInput } from '../word-input';
 import styles from './styles.modules.scss';
 
@@ -22,14 +22,16 @@ export const ExercisePlayer = () => {
     videoUrl,
   } = useExerciseStore();
   const segment = segments[currentSegmentIndex];
+  const playbackStartTime = getPlaybackStartTime(segment.startTime);
+  const playbackEndTime = getPlaybackEndTime(segment.endTime, segment.text);
   const words = segment.text.split(wordSeparatorPattern).map(sanitizeWord).filter(Boolean);
   const segmentAnswers = answers[segment.id] ?? [];
   const isChecked = checkedSegments[segment.id] ?? false;
   const correctCount = words.filter((word, index) => normalizeWord(segmentAnswers[index] ?? '') === normalizeWord(word)).length;
   const allCorrect = correctCount === words.length;
   const { handleTimeUpdate, replay } = useSegmentPlayback({
-    endTime: segment.endTime,
-    startTime: segment.startTime,
+    endTime: playbackEndTime,
+    startTime: playbackStartTime,
     videoRef,
   });
 
@@ -55,7 +57,7 @@ export const ExercisePlayer = () => {
         </div>
         <div className={styles.videoControls}>
           <span className={styles.clipTime}>
-            {(segment.startTime / millisecondsPerSecond).toFixed(1)}s—{(segment.endTime / millisecondsPerSecond).toFixed(1)}s
+            {(playbackStartTime / millisecondsPerSecond).toFixed(1)}s—{(playbackEndTime / millisecondsPerSecond).toFixed(1)}s
           </span>
           <Button className={styles.replay} variant="secondary" type="button" onClick={() => void replay()}>
             <RotateCcw size={16} aria-hidden="true" /> Replay
