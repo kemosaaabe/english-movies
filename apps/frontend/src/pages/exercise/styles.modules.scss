@@ -1,0 +1,129 @@
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 80% -10%, rgba(108, 81, 255, 0.12), transparent 34rem),
+    var(--color-background);
+}
+
+.header,
+.main {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.header {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exit {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.main {
+  padding: 38px 0 70px;
+}
+
+.topline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-accent);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.06em;
+}
+
+.counter {
+  color: var(--color-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.progressRoot {
+  position: relative;
+  height: 3px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progressIndicator {
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+  transition: transform 280ms ease;
+}
+
+.empty {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background: var(--color-background);
+}
+
+.emptyCard {
+  max-width: 430px;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-surface);
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: 2rem;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    margin: 0 0 24px;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+}
+
+.startLink {
+  color: var(--color-accent-ink);
+  text-decoration: none;
+}
+
+@media (max-width: 520px) {
+  .header,
+  .main {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .main {
+    padding-top: 24px;
+  }
+
+  .topline {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

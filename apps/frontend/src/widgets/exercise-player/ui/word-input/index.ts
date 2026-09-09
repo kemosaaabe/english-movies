@@ -1,0 +1,1 @@
+export { WordInput } from './WordInput';

@@ -1,0 +1,10 @@
+export const segmentLimit = 10;
+export const subtitleFileField = 'file';
+export const srtTimestampPattern = /^(\d{2}):(\d{2}):(\d{2}),(\d{3})$/;
+export const srtBlockSeparatorPattern = /\r?\n\s*\r?\n/;
+export const srtLineSeparatorPattern = /\r?\n/;
+export const millisecondsPerSecond = 1000;
+export const secondsPerMinute = 60;
+export const minutesPerHour = 60;
+export const missingSubtitleMessage = 'Please attach an SRT subtitle file.';
+export const invalidSubtitleMessage = 'The subtitle file does not contain valid SRT entries.';

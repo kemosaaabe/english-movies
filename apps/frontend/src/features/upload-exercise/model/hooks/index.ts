@@ -1,0 +1,1 @@
+export { useParseSubtitles } from './useParseSubtitles';
