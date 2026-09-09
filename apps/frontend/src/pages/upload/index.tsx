@@ -14,7 +14,7 @@ export const UploadPage = () => (
           Train your <span>movie ear.</span>
         </h1>
         <p className={styles.description}>
-          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build the first 10 clips.
+          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to three exercises of 10 clips.
         </p>
       </section>
       <section className={styles.panel} aria-labelledby="upload-title">

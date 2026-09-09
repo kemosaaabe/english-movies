@@ -1,6 +1,6 @@
 import { Headphones, RotateCcw } from 'lucide-react';
 import { useRef } from 'react';
-import { useExerciseStore } from '@features/exercise';
+import { segmentsPerExercise, useExerciseStore } from '@features/exercise';
 import { normalizeWord, sanitizeWord } from '@shared/lib/normalize-word';
 import { Button } from '@shared/ui/button';
 import { millisecondsPerSecond, wordSeparatorPattern } from '../../constants';
@@ -22,6 +22,10 @@ export const ExercisePlayer = () => {
     videoUrl,
   } = useExerciseStore();
   const segment = segments[currentSegmentIndex];
+  const currentClipIndex = currentSegmentIndex % segmentsPerExercise;
+  const isLastSegment = currentSegmentIndex === segments.length - 1;
+  const isExerciseBoundary = (currentSegmentIndex + 1) % segmentsPerExercise === 0;
+  const nextExerciseNumber = Math.floor((currentSegmentIndex + 1) / segmentsPerExercise) + 1;
   const playbackStartTime = getPlaybackStartTime(segment.startTime);
   const playbackEndTime = getPlaybackEndTime(segment.endTime, segment.text);
   const words = segment.text.split(wordSeparatorPattern).map(sanitizeWord).filter(Boolean);
@@ -52,7 +56,7 @@ export const ExercisePlayer = () => {
         <div className={styles.videoWrap}>
           <video className={styles.video} ref={videoRef} src={videoUrl} onTimeUpdate={handleTimeUpdate} playsInline />
           <span className={styles.videoBadge}>
-            <span className={styles.liveDot} /> Clip {currentSegmentIndex + 1}
+            <span className={styles.liveDot} /> Clip {currentClipIndex + 1}
           </span>
         </div>
         <div className={styles.videoControls}>
@@ -105,9 +109,9 @@ export const ExercisePlayer = () => {
             type="button"
             variant="secondary"
             onClick={nextSegment}
-            disabled={currentSegmentIndex === segments.length - 1}
+            disabled={isLastSegment}
           >
-            Next →
+            {isExerciseBoundary && !isLastSegment ? `Start exercise ${nextExerciseNumber} →` : 'Next →'}
           </Button>
         </div>
       </section>

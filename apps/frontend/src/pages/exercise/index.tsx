@@ -1,7 +1,7 @@
 import * as Progress from '@radix-ui/react-progress';
 import { Link } from 'react-router-dom';
 import { uploadRoute } from '@app/router/constants';
-import { useExerciseStore } from '@features/exercise';
+import { segmentsPerExercise, useExerciseStore } from '@features/exercise';
 import { Brand } from '@shared/ui/brand';
 import { Button } from '@shared/ui/button';
 import { ExercisePlayer } from '@widgets/exercise-player';
@@ -29,7 +29,12 @@ export const ExercisePage = () => {
     );
   }
 
-  const progress = ((currentSegmentIndex + 1) / segments.length) * 100;
+  const currentExerciseIndex = Math.floor(currentSegmentIndex / segmentsPerExercise);
+  const currentExerciseStartIndex = currentExerciseIndex * segmentsPerExercise;
+  const currentExerciseSegmentCount = Math.min(segmentsPerExercise, segments.length - currentExerciseStartIndex);
+  const currentClipIndex = currentSegmentIndex - currentExerciseStartIndex;
+  const totalExercises = Math.ceil(segments.length / segmentsPerExercise);
+  const progress = ((currentClipIndex + 1) / currentExerciseSegmentCount) * 100;
 
   const handleExit = (): void => {
     URL.revokeObjectURL(videoUrl);
@@ -47,11 +52,13 @@ export const ExercisePage = () => {
       <main className={styles.main}>
         <div className={styles.topline}>
           <div>
-            <p className={styles.eyebrow}>Listening session</p>
+            <p className={styles.eyebrow}>
+              Exercise {String(currentExerciseIndex + 1).padStart(2, '0')} of {String(totalExercises).padStart(2, '0')}
+            </p>
             <h1 className={styles.title}>Catch every word.</h1>
           </div>
           <span className={styles.counter}>
-            Clip {String(currentSegmentIndex + 1).padStart(2, '0')} / {String(segments.length).padStart(2, '0')}
+            Clip {String(currentClipIndex + 1).padStart(2, '0')} / {String(currentExerciseSegmentCount).padStart(2, '0')}
           </span>
         </div>
         <Progress.Root className={styles.progressRoot} value={progress} aria-label="Exercise progress">

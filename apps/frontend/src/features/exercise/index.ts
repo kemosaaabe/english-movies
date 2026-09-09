@@ -1,1 +1,1 @@
-export { useExerciseStore } from './model';
+export { segmentsPerExercise, useExerciseStore } from './model';

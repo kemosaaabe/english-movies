@@ -26,4 +26,4 @@ docker compose up --build
 
 The containerized app is available at `http://localhost:8080`.
 
-The video remains in the browser as an object URL. Only the subtitle file is sent to the API, which returns its first 10 parsed entries.
+The video remains in the browser as an object URL. Only the subtitle file is sent to the API, which returns its first 30 parsed entries for three exercises of 10 clips.
