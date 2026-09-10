@@ -1,1 +1,0 @@
-export { WordInput } from './WordInput';

@@ -5,8 +5,8 @@
   flex-direction: column;
   overflow: hidden;
   background:
-    radial-gradient(circle at 82% 18%, rgba(108, 81, 255, 0.13), transparent 28rem),
-    radial-gradient(circle at 10% 90%, rgba(217, 255, 87, 0.06), transparent 26rem),
+    radial-gradient(circle at 82% 18%, var(--color-page-glow), var(--color-transparent) 28rem),
+    radial-gradient(circle at 10% 90%, var(--color-accent-glow-faint), var(--color-transparent) 26rem),
     var(--color-background);
 
   &::before {
@@ -15,8 +15,8 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.22;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-image: linear-gradient(var(--color-grid-line) 1px, var(--color-transparent) 1px),
+      linear-gradient(90deg, var(--color-grid-line) 1px, var(--color-transparent) 1px);
     background-size: 48px 48px;
   }
 }
@@ -52,10 +52,10 @@
 .eyebrow {
   margin: 0 0 22px;
   color: var(--color-accent);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.13em;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
 }
 
@@ -64,12 +64,12 @@
   margin: 0;
   font-size: clamp(3.3rem, 7vw, 6.8rem);
   line-height: 0.88;
-  letter-spacing: -0.075em;
+  letter-spacing: -4.5px;
 
   span {
     display: block;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(244, 243, 247, 0.45);
+    color: var(--color-transparent);
+    -webkit-text-stroke: 1px var(--color-text-outline);
   }
 }
 
@@ -85,8 +85,8 @@
   padding: clamp(22px, 4vw, 38px);
   border: 1px solid var(--color-border);
   border-radius: 26px;
-  background: rgba(18, 21, 31, 0.82);
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.38);
+  background: var(--color-panel-background);
+  box-shadow: 0 32px 90px var(--color-panel-shadow);
   backdrop-filter: blur(20px);
 }
 
@@ -98,24 +98,24 @@
   display: block;
   margin-bottom: 8px;
   color: var(--color-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
 .panelTitle {
   margin: 0;
   font-size: clamp(1.45rem, 3vw, 2rem);
-  letter-spacing: -0.04em;
+  letter-spacing: -1.3px;
 }
 
 .footer {
   min-height: 70px;
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  color: #666c7e;
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-footer-text);
   font-size: 0.75rem;
 }
 

@@ -1,6 +1,7 @@
-import { useMutation, type UseMutationResult } from '@tanstack/react-query';
-import type { SubtitleSegment } from '@entities/subtitle-segment';
-import { parseSubtitles } from '@shared/api/subtitles';
+import { useMutation } from '@tanstack/react-query';
 
-export const useParseSubtitles = (): UseMutationResult<SubtitleSegment[], Error, File> =>
-  useMutation({ mutationFn: parseSubtitles });
+import { parseSubtitles, type SubtitleSegment } from '@entities/subtitle-segment';
+import type { HttpError } from '@shared/api';
+
+export const useParseSubtitles = () =>
+  useMutation<SubtitleSegment[], HttpError, File>({ mutationFn: parseSubtitles });

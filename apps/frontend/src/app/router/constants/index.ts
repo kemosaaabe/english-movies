@@ -1,2 +1,4 @@
-export const uploadRoute = "/";
-export const exerciseRoute = "/exercise";
+export const routes = {
+  exercise: "/exercise",
+  upload: "/",
+} as const;

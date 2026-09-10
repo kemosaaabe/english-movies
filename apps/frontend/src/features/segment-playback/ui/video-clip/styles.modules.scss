@@ -1,0 +1,70 @@
+.videoPanel {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+}
+
+.videoWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--color-video-background);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.videoBadge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid var(--color-video-badge-border);
+  border-radius: 999px;
+  color: var(--color-video-badge-text);
+  background: var(--color-video-badge-background);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-live-ring);
+}
+
+.videoControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+
+.clipTime {
+  color: var(--color-muted);
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+}
+
+.replay {
+  min-height: 40px;
+  padding-inline: 14px;
+}
+
+@media (max-width: 520px) {
+  .videoPanel {
+    border-radius: 18px;
+  }
+}

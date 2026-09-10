@@ -1,0 +1,1 @@
+export { getExerciseProgress } from './getExerciseProgress';

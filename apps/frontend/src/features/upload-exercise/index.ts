@@ -1,1 +1,1 @@
-export { UploadExerciseForm } from './ui/UploadExerciseForm';
+export { UploadExerciseForm } from './ui';

@@ -1,7 +1,7 @@
 .page {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 80% -10%, rgba(108, 81, 255, 0.12), transparent 34rem),
+    radial-gradient(circle at 80% -10%, var(--color-page-glow-soft), var(--color-transparent) 34rem),
     var(--color-background);
 }
 
@@ -44,21 +44,21 @@
 .eyebrow {
   margin: 0 0 8px;
   color: var(--color-accent);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
 }
 
 .title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.6rem);
-  letter-spacing: -0.06em;
+  letter-spacing: -3.4px;
 }
 
 .counter {
   color: var(--color-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.8rem;
 }
 
@@ -68,7 +68,7 @@
   margin-bottom: 28px;
   overflow: hidden;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-progress-track);
 }
 
 .progressIndicator {
@@ -97,7 +97,7 @@
   h1 {
     margin: 0 0 12px;
     font-size: 2rem;
-    letter-spacing: -0.04em;
+    letter-spacing: -1.3px;
   }
 
   p {
