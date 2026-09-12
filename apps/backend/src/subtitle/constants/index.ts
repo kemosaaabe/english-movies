@@ -1,4 +1,4 @@
-export const segmentLimit = 30;
+export const segmentLimit = 50;
 export const subtitleFileField = 'file';
 export const srtTimestampPattern = /^(\d{2}):(\d{2}):(\d{2}),(\d{3})$/;
 export const srtBlockSeparatorPattern = /\r?\n\s*\r?\n/;

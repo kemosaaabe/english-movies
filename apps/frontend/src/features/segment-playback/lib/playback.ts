@@ -11,5 +11,5 @@ export const getPlaybackEndTime = (endTime: number, subtitleText: string) => {
   const dialogueMarkerCount = subtitleText.match(dialogueMarkerPattern)?.length ?? 0;
   const hasMultipleSpeakers = dialogueMarkerCount >= minimumDialogueMarkerCount;
 
-  return hasMultipleSpeakers ? endTime + multiSpeakerEndPadding : endTime;
+  return hasMultipleSpeakers ? endTime + multiSpeakerEndPadding : endTime + clipStartPadding;
 };

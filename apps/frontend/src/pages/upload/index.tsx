@@ -18,7 +18,7 @@ export const UploadPage = () => (
           <Typography variant="h1">movie ear.</Typography>
         </Typography>
         <Typography as="p" className={styles.description} variant="bodyL">
-          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to three
+          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to five
           exercises of 10 clips.
         </Typography>
       </section>
