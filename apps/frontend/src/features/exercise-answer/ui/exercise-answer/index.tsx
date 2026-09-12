@@ -56,7 +56,7 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
 
   return (
     <section className={styles.exercisePanel}>
-      <Typography as="p" className={styles.instruction}>
+      <Typography as="p" className={styles.instruction} variant="bodyS">
         <Headphones size={17} /> Listen closely. Type one word in each box.
       </Typography>
       <div className={styles.waveform}>
@@ -64,7 +64,7 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
           <span className={styles.waveBar} key={waveBarIndex} />
         ))}
       </div>
-      <Typography as="h2" className={styles.answerHeading}>
+      <Typography as="h2" className={styles.answerHeading} variant="h2">
         What did you hear?
       </Typography>
       <div className={styles.inputs}>
@@ -81,15 +81,15 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
           />
         ))}
       </div>
-      <Typography as="p" className={resultClassName}>
+      <Typography as="p" className={resultClassName} variant="bodyS">
         {isCurrentSegmentChecked && resultMessage}
       </Typography>
       <div className={styles.actions}>
         <Button type="button" variant="ghost" onClick={previousSegment} disabled={currentSegmentIndex === 0}>
-          <Typography>Previous</Typography>
+          <Typography variant="bodyM">Previous</Typography>
         </Button>
         <Button className={styles.check} type="button" onClick={checkCurrentSegment}>
-          <Typography>Check</Typography>
+          <Typography variant="bodyM">Check</Typography>
         </Button>
         <Button
           className={styles.next}
@@ -98,7 +98,7 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
           onClick={nextSegment}
           disabled={isLastSegment}
         >
-          <Typography>{nextButtonLabel}</Typography>
+          <Typography variant="bodyM">{nextButtonLabel}</Typography>
         </Button>
       </div>
     </section>

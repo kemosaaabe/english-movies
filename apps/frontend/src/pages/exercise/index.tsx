@@ -14,13 +14,15 @@ export const ExercisePage = () => {
     return (
       <main className={styles.empty}>
         <section className={styles.emptyCard}>
-          <Typography as="h1">No exercise yet</Typography>
-          <Typography as="p">
+          <Typography as="h1" variant="h1">
+            No exercise yet
+          </Typography>
+          <Typography as="p" variant="bodyM">
             Add a video and subtitle file first, then your listening session will appear here.
           </Typography>
           <Button asChild>
             <Link className={styles.startLink} to={routes.upload}>
-              <Typography>Choose files</Typography>
+              <Typography variant="bodyM">Choose files</Typography>
             </Link>
           </Button>
         </section>
@@ -46,20 +48,20 @@ export const ExercisePage = () => {
       <header className={styles.header}>
         <Logo />
         <Link className={styles.exit} to={routes.upload} onClick={handleExit}>
-          <Typography>End session</Typography>
+          <Typography variant="bodyS">End session</Typography>
         </Link>
       </header>
       <main className={styles.main}>
         <div className={styles.topline}>
           <div>
-            <Typography as="p" className={styles.eyebrow}>
+            <Typography as="p" className={styles.eyebrow} variant="caption">
               Exercise {String(currentExerciseNumber).padStart(2, '0')} of {String(totalExercises).padStart(2, '0')}
             </Typography>
-            <Typography as="h1" className={styles.title}>
+            <Typography as="h1" className={styles.title} variant="h1">
               Catch every word.
             </Typography>
           </div>
-          <Typography className={styles.counter}>
+          <Typography className={styles.counter} variant="bodyS">
             Clip {String(currentClipNumber).padStart(2, '0')} / {String(currentExerciseSegmentCount).padStart(2, '0')}
           </Typography>
         </div>

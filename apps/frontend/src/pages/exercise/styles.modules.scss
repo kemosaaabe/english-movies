@@ -21,7 +21,6 @@
 .exit {
   color: var(--color-muted);
   text-decoration: none;
-  font-size: 0.875rem;
   font-weight: 600;
 
   &:hover {
@@ -45,7 +44,6 @@
   margin: 0 0 8px;
   color: var(--color-accent);
   font-family: var(--font-family-mono);
-  font-size: 0.72rem;
   letter-spacing: 1.4px;
   text-transform: uppercase;
 }
@@ -59,7 +57,6 @@
 .counter {
   color: var(--color-muted);
   font-family: var(--font-family-mono);
-  font-size: 0.8rem;
 }
 
 .progressRoot {
@@ -96,14 +93,12 @@
 
   h1 {
     margin: 0 0 12px;
-    font-size: 2rem;
     letter-spacing: -1.3px;
   }
 
   p {
     margin: 0 0 24px;
     color: var(--color-muted);
-    line-height: 1.6;
   }
 }
 

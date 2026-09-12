@@ -68,7 +68,11 @@ export const WordInput = ({
           <KeyRound size={16} />
         </Button>
       </div>
-      {isAnswerVisible && <Typography className={styles.answer}>{expectedWord}</Typography>}
+      {isAnswerVisible && (
+        <Typography className={styles.answer} variant="caption">
+          {expectedWord}
+        </Typography>
+      )}
     </div>
   );
 };

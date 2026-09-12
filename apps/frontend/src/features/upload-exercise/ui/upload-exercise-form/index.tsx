@@ -89,12 +89,12 @@ export const UploadExerciseForm = () => {
       {errors.root?.message && <FormError>{errors.root.message}</FormError>}
 
       <div className={styles.footer}>
-        <Typography as="p" className={styles.privacy}>
+        <Typography as="p" className={styles.privacy} variant="bodyS">
           <LockKeyhole size={15} /> Your video never leaves this browser
         </Typography>
         <Button className={styles.submit} type="submit" disabled={isFormSubmitting}>
           {isFormSubmitting && <span className={styles.spinner} />}
-          <Typography>{isFormSubmitting ? 'Creating…' : 'Create exercise'}</Typography>
+          <Typography variant="bodyM">{isFormSubmitting ? 'Creating…' : 'Create exercise'}</Typography>
         </Button>
       </div>
     </form>

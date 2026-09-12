@@ -23,18 +23,18 @@ export const VideoClip = ({ clipNumber, currentSegment, videoUrl }: VideoClipPro
     <section className={styles.videoPanel}>
       <div className={styles.videoWrap}>
         <video className={styles.video} ref={videoRef} src={videoUrl} onTimeUpdate={handleTimeUpdate} playsInline />
-        <Typography className={styles.videoBadge}>
+        <Typography className={styles.videoBadge} variant="caption">
           <span className={styles.liveDot} /> Clip {clipNumber}
         </Typography>
       </div>
       <div className={styles.videoControls}>
-        <Typography className={styles.clipTime}>
+        <Typography className={styles.clipTime} variant="caption">
           {(startTime / millisecondsPerSecond).toFixed(1)}s—
           {(endTime / millisecondsPerSecond).toFixed(1)}s
         </Typography>
         <Button className={styles.replay} variant="secondary" type="button" onClick={replay}>
           <RotateCcw size={16} />
-          <Typography>Replay</Typography>
+          <Typography variant="bodyM">Replay</Typography>
         </Button>
       </div>
     </section>

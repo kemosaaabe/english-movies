@@ -8,6 +8,8 @@ export const Logo = () => (
       <span className={styles.bar} />
       <span className={styles.bar} />
     </span>
-    <Typography>ReelLingo</Typography>
+    <Typography className={styles.name} variant="bodyL">
+      ReelLingo
+    </Typography>
   </div>
 );

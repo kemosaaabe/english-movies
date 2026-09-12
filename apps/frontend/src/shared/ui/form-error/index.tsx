@@ -3,7 +3,7 @@ import type { FormErrorProps } from './types';
 import styles from './styles.modules.scss';
 
 export const FormError = ({ children }: FormErrorProps) => (
-  <Typography as="p" className={styles.error}>
+  <Typography as="p" className={styles.error} variant="bodyS">
     {children}
   </Typography>
 );

@@ -3,8 +3,11 @@
   align-items: center;
   gap: 12px;
   color: var(--color-text);
-  font-weight: 800;
   letter-spacing: -0.5px;
+}
+
+.name {
+  font-weight: 800;
 }
 
 .mark {

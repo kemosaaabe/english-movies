@@ -24,8 +24,12 @@ export const FormFileInput = <FormValues extends FieldValues>({
         <input className={styles.input} id={inputId} type="file" accept={accept} {...register(name)} />
         <span className={styles.icon}>{icon}</span>
         <span className={styles.copy}>
-          <Typography className={styles.label}>{label}</Typography>
-          <Typography className={fileName ? styles.fileName : styles.description}>{fileName ?? description}</Typography>
+          <Typography className={styles.label} variant="bodyL">
+            {label}
+          </Typography>
+          <Typography className={fileName ? styles.fileName : styles.description} variant="bodyS">
+            {fileName ?? description}
+          </Typography>
         </span>
       </label>
       {errorMessage && <FormError>{errorMessage}</FormError>}

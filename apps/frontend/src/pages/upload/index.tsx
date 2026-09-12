@@ -10,22 +10,24 @@ export const UploadPage = () => (
     </header>
     <main className={styles.main}>
       <section className={styles.intro}>
-        <Typography as="p" className={styles.eyebrow}>
+        <Typography as="p" className={styles.eyebrow} variant="caption">
           Listen · Type · Learn
         </Typography>
-        <Typography as="h1" className={styles.title}>
+        <Typography as="h1" className={styles.title} variant="h1">
           Train your
-          <Typography>movie ear.</Typography>
+          <Typography variant="h1">movie ear.</Typography>
         </Typography>
-        <Typography as="p" className={styles.description}>
+        <Typography as="p" className={styles.description} variant="bodyL">
           Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to three
           exercises of 10 clips.
         </Typography>
       </section>
       <section className={styles.panel}>
         <div className={styles.panelHeader}>
-          <Typography className={styles.step}>New session · 01</Typography>
-          <Typography as="h2" className={styles.panelTitle}>
+          <Typography className={styles.step} variant="caption">
+            New session · 01
+          </Typography>
+          <Typography as="h2" className={styles.panelTitle} variant="h2">
             Add your files
           </Typography>
         </div>
@@ -33,7 +35,7 @@ export const UploadPage = () => (
       </section>
     </main>
     <footer className={styles.footer}>
-      <Typography>Private by design · No account needed</Typography>
+      <Typography variant="caption">Private by design · No account needed</Typography>
     </footer>
   </div>
 );
