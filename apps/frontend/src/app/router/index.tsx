@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { ExercisePage } from '@pages/exercise';
 import { UploadPage } from '@pages/upload';
 import { routes } from './constants';

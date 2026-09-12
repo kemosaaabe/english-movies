@@ -22,13 +22,7 @@ export const VideoClip = ({ clipNumber, currentSegment, videoUrl }: VideoClipPro
   return (
     <section className={styles.videoPanel}>
       <div className={styles.videoWrap}>
-        <video
-          className={styles.video}
-          ref={videoRef}
-          src={videoUrl}
-          onTimeUpdate={handleTimeUpdate}
-          playsInline
-        />
+        <video className={styles.video} ref={videoRef} src={videoUrl} onTimeUpdate={handleTimeUpdate} playsInline />
         <Typography className={styles.videoBadge}>
           <span className={styles.liveDot} /> Clip {clipNumber}
         </Typography>

@@ -61,20 +61,14 @@ export const WordInput = ({
         <Button
           className={answerButtonClassName}
           type="button"
-          title={
-            isAnswerVisible
-              ? `Hide answer for word ${wordIndex + 1}`
-              : `Show answer for word ${wordIndex + 1}`
-          }
+          title={isAnswerVisible ? `Hide answer for word ${wordIndex + 1}` : `Show answer for word ${wordIndex + 1}`}
           variant="ghost"
           onClick={toggleAnswer}
         >
           <KeyRound size={16} />
         </Button>
       </div>
-      {isAnswerVisible && (
-        <Typography className={styles.answer}>{expectedWord}</Typography>
-      )}
+      {isAnswerVisible && <Typography className={styles.answer}>{expectedWord}</Typography>}
     </div>
   );
 };

@@ -18,15 +18,13 @@ export const UploadPage = () => (
           <Typography>movie ear.</Typography>
         </Typography>
         <Typography as="p" className={styles.description}>
-          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll
-          build up to three exercises of 10 clips.
+          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to three
+          exercises of 10 clips.
         </Typography>
       </section>
       <section className={styles.panel}>
         <div className={styles.panelHeader}>
-          <Typography className={styles.step}>
-            New session · 01
-          </Typography>
+          <Typography className={styles.step}>New session · 01</Typography>
           <Typography as="h2" className={styles.panelTitle}>
             Add your files
           </Typography>

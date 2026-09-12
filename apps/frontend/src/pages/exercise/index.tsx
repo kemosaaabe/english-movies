@@ -53,16 +53,14 @@ export const ExercisePage = () => {
         <div className={styles.topline}>
           <div>
             <Typography as="p" className={styles.eyebrow}>
-              Exercise {String(currentExerciseNumber).padStart(2, '0')} of{' '}
-              {String(totalExercises).padStart(2, '0')}
+              Exercise {String(currentExerciseNumber).padStart(2, '0')} of {String(totalExercises).padStart(2, '0')}
             </Typography>
             <Typography as="h1" className={styles.title}>
               Catch every word.
             </Typography>
           </div>
           <Typography className={styles.counter}>
-            Clip {String(currentClipNumber).padStart(2, '0')} /{' '}
-            {String(currentExerciseSegmentCount).padStart(2, '0')}
+            Clip {String(currentClipNumber).padStart(2, '0')} / {String(currentExerciseSegmentCount).padStart(2, '0')}
           </Typography>
         </div>
         <Progress

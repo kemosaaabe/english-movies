@@ -3,10 +3,7 @@ import { segmentsPerExercise } from '../constants';
 export const getExerciseProgress = (currentSegmentIndex: number, segmentCount: number) => {
   const currentExerciseIndex = Math.floor(currentSegmentIndex / segmentsPerExercise);
   const currentExerciseStartIndex = currentExerciseIndex * segmentsPerExercise;
-  const currentExerciseSegmentCount = Math.min(
-    segmentsPerExercise,
-    segmentCount - currentExerciseStartIndex,
-  );
+  const currentExerciseSegmentCount = Math.min(segmentsPerExercise, segmentCount - currentExerciseStartIndex);
   const currentClipIndex = currentSegmentIndex - currentExerciseStartIndex;
 
   return {

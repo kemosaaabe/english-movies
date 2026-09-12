@@ -15,7 +15,8 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.22;
-    background-image: linear-gradient(var(--color-grid-line) 1px, var(--color-transparent) 1px),
+    background-image:
+      linear-gradient(var(--color-grid-line) 1px, var(--color-transparent) 1px),
       linear-gradient(90deg, var(--color-grid-line) 1px, var(--color-transparent) 1px);
     background-size: 48px 48px;
   }

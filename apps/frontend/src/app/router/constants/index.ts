@@ -1,4 +1,4 @@
 export const routes = {
-  exercise: "/exercise",
-  upload: "/",
+  exercise: '/exercise',
+  upload: '/',
 } as const;

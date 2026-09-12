@@ -6,7 +6,7 @@ import { Typography } from '../typography';
 import type { FormFileInputProps } from './types';
 import styles from './styles.modules.scss';
 
-export const FormFileInput = <FormValues extends FieldValues,>({
+export const FormFileInput = <FormValues extends FieldValues>({
   accept,
   description,
   errorMessage,
@@ -25,9 +25,7 @@ export const FormFileInput = <FormValues extends FieldValues,>({
         <span className={styles.icon}>{icon}</span>
         <span className={styles.copy}>
           <Typography className={styles.label}>{label}</Typography>
-          <Typography className={fileName ? styles.fileName : styles.description}>
-            {fileName ?? description}
-          </Typography>
+          <Typography className={fileName ? styles.fileName : styles.description}>{fileName ?? description}</Typography>
         </span>
       </label>
       {errorMessage && <FormError>{errorMessage}</FormError>}

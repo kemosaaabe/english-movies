@@ -3,11 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { millisecondsPerSecond } from '../../constants';
 import type { UseSegmentPlaybackOptions } from '../../types';
 
-export const useSegmentPlayback = ({
-  endTime,
-  startTime,
-  videoRef,
-}: UseSegmentPlaybackOptions) => {
+export const useSegmentPlayback = ({ endTime, startTime, videoRef }: UseSegmentPlaybackOptions) => {
   const replay = useCallback(() => {
     const video = videoRef.current;
 

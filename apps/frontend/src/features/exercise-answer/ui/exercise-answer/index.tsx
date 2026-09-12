@@ -28,8 +28,7 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
   const isExerciseBoundary = (currentSegmentIndex + 1) % segmentsPerExercise === 0;
   const nextExerciseNumber = Math.floor((currentSegmentIndex + 1) / segmentsPerExercise) + 1;
   const correctAnswerCount = expectedWords.filter(
-    (expectedWord, wordIndex) =>
-      normalizeWord(currentSegmentAnswers[wordIndex] ?? '') === normalizeWord(expectedWord),
+    (expectedWord, wordIndex) => normalizeWord(currentSegmentAnswers[wordIndex] ?? '') === normalizeWord(expectedWord),
   ).length;
   const areAllAnswersCorrect = correctAnswerCount === expectedWords.length;
 
@@ -51,12 +50,9 @@ export const ExerciseAnswer = ({ currentSegment }: ExerciseAnswerProps) => {
   const resultMessage = areAllAnswersCorrect
     ? 'Perfect — every word is right.'
     : `${correctAnswerCount} of ${expectedWords.length} words correct. Try the clip again.`;
-  const resultClassName = isCurrentSegmentChecked && areAllAnswersCorrect
-    ? `${styles.result} ${styles.resultSuccess}`
-    : styles.result;
-  const nextButtonLabel = isExerciseBoundary && !isLastSegment
-    ? `Start exercise ${nextExerciseNumber} →`
-    : 'Next →';
+  const resultClassName =
+    isCurrentSegmentChecked && areAllAnswersCorrect ? `${styles.result} ${styles.resultSuccess}` : styles.result;
+  const nextButtonLabel = isExerciseBoundary && !isLastSegment ? `Start exercise ${nextExerciseNumber} →` : 'Next →';
 
   return (
     <section className={styles.exercisePanel}>

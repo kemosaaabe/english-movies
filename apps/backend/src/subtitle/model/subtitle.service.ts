@@ -40,7 +40,11 @@ export class SubtitleService {
     const [startValue, endValue] = timestampLine.split('-->').map((value) => value.trim());
     const startTime = this.parseTimestamp(startValue);
     const endTime = this.parseTimestamp(endValue);
-    const text = lines.slice(timestampLineIndex + 1).join(' ').replace(/<[^>]+>/g, '').trim();
+    const text = lines
+      .slice(timestampLineIndex + 1)
+      .join(' ')
+      .replace(/<[^>]+>/g, '')
+      .trim();
 
     if (startTime === null || endTime === null || text.length === 0) {
       return null;
