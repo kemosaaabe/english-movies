@@ -30,6 +30,7 @@ export const UploadExerciseForm = () => {
 
   const videoFiles = watch('videoFile');
   const subtitleFiles = watch('subtitleFile');
+
   const videoFileName = videoFiles?.item(0)?.name;
   const subtitleFileName = subtitleFiles?.item(0)?.name;
 

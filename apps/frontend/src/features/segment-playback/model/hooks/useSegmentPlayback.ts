@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
-import { millisecondsPerSecond } from '../../constants';
+import { millisecondsPerSecond } from '@shared/constants';
+
 import type { UseSegmentPlaybackOptions } from '../../types';
 
 export const useSegmentPlayback = ({ endTime, startTime, videoRef }: UseSegmentPlaybackOptions) => {
