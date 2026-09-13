@@ -2,7 +2,8 @@
   "name": "english-movies",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "backend",
+    "frontend"
   ],
   "scripts": {
     "dev": "concurrently -n backend,frontend -c magenta,cyan \"npm run dev -w @english-movies/backend\" \"npm run dev -w @english-movies/frontend\"",
