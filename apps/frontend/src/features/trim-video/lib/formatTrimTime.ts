@@ -1,8 +1,15 @@
 import { secondsPerMinute } from '@shared/constants';
 
 export const formatTrimTime = (time: number): string => {
-  const minutes = Math.floor(time / secondsPerMinute);
-  const seconds = time - minutes * secondsPerMinute;
+  const totalSeconds = Math.round(time);
+  const hours = Math.floor(totalSeconds / secondsPerMinute ** 2);
+  const minutes = Math.floor(totalSeconds / secondsPerMinute) % secondsPerMinute;
+  const seconds = totalSeconds % secondsPerMinute;
+  const formattedSeconds = seconds.toString().padStart(2, '0');
 
-  return `${minutes}:${seconds.toFixed(0).padStart(2, '0')}`;
+  if (hours === 0) {
+    return `${minutes}:${formattedSeconds}`;
+  }
+
+  return `${hours}:${minutes.toString().padStart(2, '0')}:${formattedSeconds}`;
 };
