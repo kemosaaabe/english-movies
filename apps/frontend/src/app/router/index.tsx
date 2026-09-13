@@ -13,6 +13,14 @@ const router = createBrowserRouter([
     Component: ExercisePage,
   },
   {
+    path: routes.trim,
+    lazy: async () => {
+      const { TrimPage } = await import('@pages/trim');
+
+      return { Component: TrimPage };
+    },
+  },
+  {
     path: '*',
     element: <Navigate to={routes.upload} replace />,
   },

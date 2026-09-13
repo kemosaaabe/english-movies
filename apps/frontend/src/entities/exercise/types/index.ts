@@ -14,5 +14,8 @@ export type ExerciseState = {
   segments: SubtitleSegment[];
   setAnswer: (segmentId: number, wordIndex: number, value: string) => void;
   setExercise: (segments: SubtitleSegment[], videoUrl: string) => void;
+  setExerciseSource: (segments: SubtitleSegment[], videoFile: File) => void;
+  sourceSegments: SubtitleSegment[];
+  sourceVideoFile: File | null;
   videoUrl: string;
 };

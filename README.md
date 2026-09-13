@@ -26,4 +26,6 @@ docker compose up --build
 
 The containerized app is available at `http://localhost:8080`.
 
-The video remains in the browser as an object URL. Only the subtitle file is sent to the API, which returns its first 50 parsed entries for five exercises of 10 clips.
+The video remains in the browser. Only the subtitle file is sent to the API. After the files are selected, MediaBunny
+trims the chosen video range locally and the matching subtitle timestamps are rebased to the new clip. The selected
+segments are split into as many exercises as needed, with up to 10 clips per exercise.

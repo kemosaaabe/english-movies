@@ -1,12 +1,16 @@
-.exercisePanel {
-  min-height: 520px;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(24px, 4vw, 40px);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 24px;
-  background: var(--color-surface);
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.exercise {
+  &Panel {
+    min-height: 470px;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 4vw, 40px);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    background: var(--color-surface);
+  }
 }
 
 .instruction {
@@ -26,32 +30,36 @@
   color: var(--color-accent);
 }
 
-.waveBar {
-  width: 3px;
-  border-radius: 4px;
-  background: currentColor;
-  opacity: 0.72;
+.wave {
+  &Bar {
+    width: 3px;
+    border-radius: 4px;
+    background: currentColor;
+    opacity: 0.72;
 
-  &:nth-child(4n + 1) {
-    height: 12px;
-  }
+    &:nth-child(4n + 1) {
+      height: 12px;
+    }
 
-  &:nth-child(4n + 2) {
-    height: 30px;
-  }
+    &:nth-child(4n + 2) {
+      height: 30px;
+    }
 
-  &:nth-child(4n + 3) {
-    height: 20px;
-  }
+    &:nth-child(4n + 3) {
+      height: 20px;
+    }
 
-  &:nth-child(4n) {
-    height: 42px;
+    &:nth-child(4n) {
+      height: 42px;
+    }
   }
 }
 
-.answerHeading {
-  margin: 0 0 16px;
-  letter-spacing: -1.4px;
+.answer {
+  &Heading {
+    margin: 0 0 16px;
+    letter-spacing: -1.4px;
+  }
 }
 
 .inputs {
@@ -64,14 +72,15 @@
   min-height: 25px;
   margin: 20px 0 0;
   color: var(--color-muted);
-}
 
-.resultSuccess {
-  color: var(--color-success);
+  &Success {
+    color: var(--color-success);
+  }
 }
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin-top: auto;
@@ -80,34 +89,40 @@
 
 .check {
   min-width: 132px;
+  flex: 1;
 }
 
 .next {
-  margin-left: auto;
+  margin-left: 0;
+  flex: 1 1 100%;
 }
 
-@media (max-width: 880px) {
-  .exercisePanel {
-    min-height: 450px;
-  }
-}
-
-@media (max-width: 520px) {
-  .exercisePanel {
-    min-height: 470px;
-    border-radius: 18px;
+@media (min-width: breakpoints.$small) {
+  .exercise {
+    &Panel {
+      min-height: 450px;
+      border-radius: 24px;
+    }
   }
 
   .actions {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .check {
-    flex: 1;
+    flex: 0 1 auto;
   }
 
   .next {
-    margin-left: 0;
-    flex: 1 1 100%;
+    margin-left: auto;
+    flex: 0 1 auto;
+  }
+}
+
+@media (min-width: breakpoints.$wide) {
+  .exercise {
+    &Panel {
+      min-height: 520px;
+    }
   }
 }

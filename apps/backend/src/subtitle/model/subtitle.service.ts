@@ -4,7 +4,6 @@ import {
   millisecondsPerSecond,
   minutesPerHour,
   secondsPerMinute,
-  segmentLimit,
   srtBlockSeparatorPattern,
   srtLineSeparatorPattern,
   srtTimestampPattern,
@@ -18,8 +17,7 @@ export class SubtitleService {
       .trim()
       .split(srtBlockSeparatorPattern)
       .map((block, index) => this.parseBlock(block, index + 1))
-      .filter((segment): segment is SubtitleSegment => segment !== null)
-      .slice(0, segmentLimit);
+      .filter((segment): segment is SubtitleSegment => segment !== null);
 
     if (segments.length === 0) {
       throw new BadRequestException(invalidSubtitleMessage);

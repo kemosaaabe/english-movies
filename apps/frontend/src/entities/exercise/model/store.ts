@@ -8,6 +8,8 @@ export const useExerciseStore = create<ExerciseState>((set) => ({
   checkedSegments: {},
   currentSegmentIndex: initialSegmentIndex,
   segments: [],
+  sourceSegments: [],
+  sourceVideoFile: null,
   videoUrl: '',
   checkCurrentSegment: () =>
     set((state) => {
@@ -38,6 +40,8 @@ export const useExerciseStore = create<ExerciseState>((set) => ({
       checkedSegments: {},
       currentSegmentIndex: initialSegmentIndex,
       segments: [],
+      sourceSegments: [],
+      sourceVideoFile: null,
       videoUrl: '',
     }),
   setAnswer: (segmentId, wordIndex, value) =>
@@ -59,6 +63,18 @@ export const useExerciseStore = create<ExerciseState>((set) => ({
       checkedSegments: {},
       currentSegmentIndex: initialSegmentIndex,
       segments,
+      sourceSegments: [],
+      sourceVideoFile: null,
       videoUrl,
+    }),
+  setExerciseSource: (sourceSegments, sourceVideoFile) =>
+    set({
+      answers: {},
+      checkedSegments: {},
+      currentSegmentIndex: initialSegmentIndex,
+      segments: [],
+      sourceSegments,
+      sourceVideoFile,
+      videoUrl: '',
     }),
 }));

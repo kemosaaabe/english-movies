@@ -1,0 +1,275 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.panel {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: 0 32px 90px var(--color-panel-shadow);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+
+  &Wrap {
+    aspect-ratio: 16 / 9;
+    background: var(--color-video-background);
+  }
+}
+
+.form {
+  display: grid;
+  gap: 24px;
+  padding: clamp(24px, 4vw, 38px);
+}
+
+.range {
+  &Header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+.heading,
+.hint {
+  margin: 0;
+}
+
+.hint {
+  margin-top: 7px;
+  color: var(--color-muted);
+}
+
+.duration,
+.time {
+  color: var(--color-muted);
+  font-family: var(--font-family-mono);
+  white-space: nowrap;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-video-background);
+
+  &Section {
+    display: grid;
+    gap: 10px;
+  }
+
+  &Labels {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &Label {
+    display: grid;
+    gap: 2px;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  &Frames {
+    position: absolute;
+    inset: 5px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent calc(12.5% - 1px),
+        var(--color-border) calc(12.5% - 1px),
+        var(--color-border) 12.5%
+      ),
+      linear-gradient(135deg, var(--color-surface-raised), var(--color-video-background));
+  }
+
+  &Selection {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    border-block: 3px solid var(--color-accent);
+    box-shadow: 0 0 0 999px color-mix(in srgb, var(--color-video-background) 68%, transparent);
+    pointer-events: none;
+  }
+
+  &Range {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    appearance: none;
+    background: transparent;
+    pointer-events: none;
+
+    &::-webkit-slider-runnable-track {
+      height: 100%;
+      background: transparent;
+    }
+
+    &::-webkit-slider-thumb {
+      width: 32px;
+      height: 72px;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: ew-resize;
+      pointer-events: auto;
+    }
+
+    &::-moz-range-track {
+      height: 100%;
+      border: 0;
+      background: transparent;
+    }
+
+    &::-moz-range-thumb {
+      width: 32px;
+      height: 72px;
+      border: 0;
+      background: transparent;
+      cursor: ew-resize;
+      pointer-events: auto;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+  }
+}
+
+.trim {
+  &Handle {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 14px;
+    border-radius: 4px;
+    background: var(--color-accent);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: var(--color-accent-ink);
+      opacity: 0.65;
+    }
+  }
+}
+
+.start {
+  &Handle {
+    left: -7px;
+  }
+}
+
+.end {
+  &Label {
+    justify-items: end;
+  }
+
+  &Handle {
+    right: -7px;
+  }
+
+  &Range {
+    z-index: 4;
+  }
+}
+
+.selection {
+  &Summary {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface-raised);
+  }
+}
+
+.exercise {
+  &Count {
+    color: var(--color-muted);
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  color: var(--color-accent);
+  background: var(--color-progress-track);
+
+  &::-webkit-progress-bar {
+    background: var(--color-progress-track);
+  }
+
+  &::-webkit-progress-value {
+    background: var(--color-accent);
+  }
+
+  &::-moz-progress-bar {
+    background: var(--color-accent);
+  }
+
+  &Wrap {
+    display: grid;
+    gap: 8px;
+    color: var(--color-muted);
+  }
+}
+
+.actions {
+  display: grid;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@media (min-width: breakpoints.$medium) {
+  .panel {
+    border-radius: 24px;
+  }
+
+  .range {
+    &Header {
+      flex-direction: row;
+    }
+  }
+
+  .selection {
+    &Summary {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  .actions {
+    display: flex;
+  }
+}

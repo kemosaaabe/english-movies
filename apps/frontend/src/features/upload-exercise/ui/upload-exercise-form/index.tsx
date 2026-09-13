@@ -15,7 +15,7 @@ import styles from './styles.modules.scss';
 
 export const UploadExerciseForm = () => {
   const navigate = useNavigate();
-  const { setExercise } = useExerciseStore();
+  const { setExerciseSource, videoUrl } = useExerciseStore();
   const { isPending, mutateAsync: parseSubtitles } = useParseSubtitles();
   const {
     clearErrors,
@@ -49,10 +49,13 @@ export const UploadExerciseForm = () => {
 
     try {
       const subtitleSegments = await parseSubtitles(subtitleFile);
-      const videoUrl = URL.createObjectURL(videoFile);
 
-      setExercise(subtitleSegments, videoUrl);
-      navigate(routes.exercise);
+      if (videoUrl) {
+        URL.revokeObjectURL(videoUrl);
+      }
+
+      setExerciseSource(subtitleSegments, videoFile);
+      navigate(routes.trim);
     } catch (requestError) {
       const message = requestError instanceof HttpError ? requestError.message : defaultUploadError;
 

@@ -18,8 +18,8 @@ export const UploadPage = () => (
           <Typography variant="h1">movie ear.</Typography>
         </Typography>
         <Typography as="p" className={styles.description} variant="bodyL">
-          Turn a scene you love into a focused listening workout. Add a video and its subtitles—we’ll build up to five
-          exercises of 10 clips.
+          Turn a scene you love into a focused listening workout. Add a video and its subtitles, choose a range, and
+          we’ll build as many exercises as needed—with up to 10 clips each.
         </Typography>
       </section>
       <section className={styles.panel}>
@@ -34,8 +34,5 @@ export const UploadPage = () => (
         <UploadExerciseForm />
       </section>
     </main>
-    <footer className={styles.footer}>
-      <Typography variant="caption">Private by design · No account needed</Typography>
-    </footer>
   </div>
 );

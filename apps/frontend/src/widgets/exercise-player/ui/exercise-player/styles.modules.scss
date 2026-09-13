@@ -1,11 +1,13 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
 .layout {
   display: grid;
-  grid-template-columns: minmax(300px, 0.88fr) minmax(470px, 1.12fr);
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
-@media (max-width: 880px) {
+@media (min-width: breakpoints.$wide) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(300px, 0.88fr) minmax(470px, 1.12fr);
   }
 }
