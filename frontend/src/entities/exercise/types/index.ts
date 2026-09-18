@@ -11,11 +11,18 @@ export type ExerciseState = {
   nextSegment: () => void;
   previousSegment: () => void;
   reset: () => void;
+  restoreExerciseVideo: () => Promise<void>;
   segments: SubtitleSegment[];
   setAnswer: (segmentId: number, wordIndex: number, value: string) => void;
-  setExercise: (segments: SubtitleSegment[], videoUrl: string) => void;
+  setExercise: (segments: SubtitleSegment[], video: Blob) => Promise<void>;
   setExerciseSource: (segments: SubtitleSegment[], videoFile: File) => void;
   sourceSegments: SubtitleSegment[];
   sourceVideoFile: File | null;
   videoUrl: string;
+  videoStorageId: string;
 };
+
+export type PersistedExerciseState = Pick<
+  ExerciseState,
+  'answers' | 'checkedSegments' | 'currentSegmentIndex' | 'segments' | 'videoStorageId'
+>;

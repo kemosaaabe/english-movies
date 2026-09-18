@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { routes } from '@app/router/constants';
@@ -8,7 +9,43 @@ import { Button, Logo, Progress, Typography } from '@shared/ui';
 import styles from './styles.modules.scss';
 
 export const ExercisePage = () => {
-  const { currentSegmentIndex, reset, segments, videoUrl } = useExerciseStore();
+  const { currentSegmentIndex, reset, restoreExerciseVideo, segments, videoStorageId, videoUrl } = useExerciseStore();
+  const [isVideoRestorePending, setIsVideoRestorePending] = useState(
+    segments.length > 0 && Boolean(videoStorageId) && !videoUrl,
+  );
+
+  useEffect(() => {
+    if (!isVideoRestorePending) {
+      return;
+    }
+
+    let isActive = true;
+
+    restoreExerciseVideo().then(() => {
+      if (isActive) {
+        setIsVideoRestorePending(false);
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, [isVideoRestorePending, restoreExerciseVideo]);
+
+  if (isVideoRestorePending) {
+    return (
+      <main className={styles.empty}>
+        <section className={styles.emptyCard}>
+          <Typography as="h1" variant="h1">
+            Restoring exercise
+          </Typography>
+          <Typography as="p" variant="bodyM">
+            Loading your video and saved progress…
+          </Typography>
+        </section>
+      </main>
+    );
+  }
 
   if (segments.length === 0 || !videoUrl) {
     return (
@@ -39,7 +76,6 @@ export const ExercisePage = () => {
   } = getExerciseProgress(currentSegmentIndex, segments.length);
 
   const handleExit = () => {
-    URL.revokeObjectURL(videoUrl);
     reset();
   };
 

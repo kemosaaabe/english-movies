@@ -153,9 +153,8 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
         onProgress: (progress) => setConversionProgress(Math.round(progress * percentageMultiplier)),
         startTime: selectedStartTime,
       });
-      const videoUrl = URL.createObjectURL(trimmedVideo);
 
-      setExercise(selectedSegments, videoUrl);
+      await setExercise(selectedSegments, trimmedVideo);
       navigate(routes.exercise, { replace: true });
     } catch (trimError) {
       setError('root', { message: trimError instanceof Error ? trimError.message : defaultTrimError });
