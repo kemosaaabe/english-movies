@@ -21,25 +21,9 @@ export const UploadPage = () => {
         </nav>
       </header>
       <main className={styles.main}>
-        <section className={styles.intro}>
-          <Typography as="p" className={styles.eyebrow} variant="caption">
-            Listen · Type · Learn
-          </Typography>
-          <Typography as="h1" className={styles.title} variant="h1">
-            Train your
-            <Typography variant="h1">movie ear.</Typography>
-          </Typography>
-          <Typography as="p" className={styles.description} variant="bodyL">
-            Turn a scene you love into a focused listening workout. Add a video and its subtitles, choose a
-            range, and we’ll build as many exercises as needed—with up to 10 clips each.
-          </Typography>
-        </section>
         <section className={styles.panel}>
           <div className={styles.panelHeader}>
-            <Typography className={styles.step} variant="caption">
-              New session · 01
-            </Typography>
-            <Typography as="h2" className={styles.panelTitle} variant="h2">
+            <Typography as="h1" className={styles.panelTitle} variant="h2">
               Add your files
             </Typography>
           </div>

@@ -7,21 +7,11 @@
   margin-inline: auto;
 
   &Header {
-    span {
-      color: var(--color-accent);
-      font: 11px var(--font-family-mono);
-      letter-spacing: 1.8px;
-    }
     h1 {
       font-size: clamp(32px, 5vw, 46px);
       line-height: 1.1;
       letter-spacing: -1.5px;
-      margin: 14px 0;
-    }
-    p {
-      color: var(--color-muted);
       margin: 0;
-      font-size: 13px;
     }
   }
   > p {
@@ -45,12 +35,6 @@
     display: flex;
     align-items: flex-start;
     gap: 16px;
-
-    > div > span {
-      color: var(--color-accent);
-      font: 12px var(--font-family-mono);
-      letter-spacing: 1.4px;
-    }
 
     h2 {
       margin: 8px 0;

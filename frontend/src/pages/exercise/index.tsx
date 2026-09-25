@@ -36,7 +36,7 @@ export const ExercisePage = () => {
     return (
       <main className={styles.empty}>
         <section className={styles.emptyCard}>
-          <Typography as="h1" variant="h1">
+          <Typography as="h1" variant="h2">
             Restoring exercise
           </Typography>
           <Typography as="p" variant="bodyM">
@@ -51,7 +51,7 @@ export const ExercisePage = () => {
     return (
       <main className={styles.empty}>
         <section className={styles.emptyCard}>
-          <Typography as="h1" variant="h1">
+          <Typography as="h1" variant="h2">
             No exercise yet
           </Typography>
           <Typography as="p" variant="bodyM">
@@ -89,14 +89,9 @@ export const ExercisePage = () => {
       </header>
       <main className={styles.main}>
         <div className={styles.topline}>
-          <div>
-            <Typography as="p" className={styles.eyebrow} variant="caption">
-              Exercise {String(currentExerciseNumber).padStart(2, '0')} of {String(totalExercises).padStart(2, '0')}
-            </Typography>
-            <Typography as="h1" className={styles.title} variant="h1">
-              Catch every word.
-            </Typography>
-          </div>
+          <Typography as="h1" className={styles.title} variant="h2">
+            Exercise {String(currentExerciseNumber).padStart(2, '0')} of {String(totalExercises).padStart(2, '0')}
+          </Typography>
           <Typography className={styles.counter} variant="bodyS">
             Clip {String(currentClipNumber).padStart(2, '0')} / {String(currentExerciseSegmentCount).padStart(2, '0')}
           </Typography>
@@ -116,7 +111,6 @@ export const ExercisePage = () => {
             <span>
               {currentClipNumber} of {currentExerciseSegmentCount} clips
             </span>
-            <span>Keep going — each replay trains your ear.</span>
           </div>
         </section>
         <ExercisePlayer />

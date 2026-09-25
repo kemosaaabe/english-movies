@@ -14,11 +14,7 @@ export const ModuleDetails = () => {
 
   return (
     <section className={styles.details}>
-      <div>
-        <span className={styles.detailsStep}>01</span>
-        <h2>Give your collection a name</h2>
-        <p>A scene, a topic, or your next language goal.</p>
-      </div>
+      <h2>Module details</h2>
       <label htmlFor="module-title">Title</label>
       <input
         id="module-title"

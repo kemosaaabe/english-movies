@@ -17,14 +17,7 @@ export const VocabularyPage = () => {
   return (
     <StudyLayout section="vocabulary">
       <header className={styles.vocabularyHeader}>
-        <div>
-          <span className={styles.vocabularyEyebrow}>
-            <BookOpen size={15} />
-            YOUR WORD LIST
-          </span>
-          <h1>Vocabulary</h1>
-          <p>Every word you’ve saved, all in one place.</p>
-        </div>
+        <h1>Vocabulary</h1>
         <Button asChild>
           <Link to={routes.studyNew}>
             <Plus size={16} />
@@ -89,7 +82,7 @@ export const VocabularyPage = () => {
           {total === 0 ? (
             <div className={styles.vocabularyEmpty}>
               <BookOpen size={28} />
-              <h2>Your first word starts here.</h2>
+              <h2>No saved words yet</h2>
               <p>
                 Save words from a movie exercise or add them to a module. They’ll appear here automatically.
               </p>

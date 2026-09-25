@@ -26,11 +26,8 @@ export const TrimPage = () => {
       </header>
       <main className={styles.main}>
         <section className={styles.intro}>
-          <Typography as="p" className={styles.eyebrow} variant="caption">
-            New session · 02
-          </Typography>
           <Typography as="h1" className={styles.title} variant="h1">
-            Trim your scene.
+            Trim video
           </Typography>
           <Typography as="p" className={styles.description} variant="bodyL">
             Choose the exact part of the video you want to practice. We’ll turn every 10 subtitle segments into an

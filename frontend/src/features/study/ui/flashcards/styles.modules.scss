@@ -5,19 +5,16 @@
   margin-inline: auto;
 
   &Header {
-    span {
-      font: 11px var(--font-family-mono);
-      color: var(--color-accent);
-      letter-spacing: 1.8px;
-    }
     h1 {
       font-size: clamp(30px, 5vw, 44px);
       letter-spacing: -1.2px;
       line-height: 1.2;
-      margin: 14px 0;
+      margin: 0 0 14px;
       overflow-wrap: anywhere;
     }
+
     p {
+      margin: 0;
       color: var(--color-muted);
       font-size: 14px;
     }

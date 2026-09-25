@@ -47,9 +47,8 @@ export const Flashcards = ({ detail }: FlashcardsProps) => {
     <section className={styles.study}>
       <BackLink to={generatePath(routes.studyModule, { moduleId: module.id })}>Module overview</BackLink>
       <header className={styles.studyHeader}>
-        <span>RECALL AT YOUR OWN PACE</span>
         <h1>{module.title}</h1>
-        <p>Think of the answer. Flip to check. Make it stick.</p>
+        <p>Think of the answer, then flip the card.</p>
       </header>
       <FlashcardControls study={study} disabled={statusMutation.isPending} />
       {study.isComplete ? (

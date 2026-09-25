@@ -43,9 +43,7 @@ export const Learn = ({ moduleId }: LearnProps) => {
     <section className={styles.learn}>
       <BackLink to={generatePath(routes.studyModule, { moduleId: moduleId })}>Module overview</BackLink>
       <header className={styles.learnHeader}>
-        <span>{learningSession.reviewOnly ? 'REVIEW SESSION' : 'LEARN YOUR WORDS'}</span>
-        <h1>Practise your vocabulary.</h1>
-        <p>Answer a few questions to practise each word. We’ll revisit the ones you find tricky.</p>
+        <h1>{learningSession.reviewOnly ? 'Review' : 'Learn'}</h1>
       </header>
       <LearnProgress session={learningSession} />
       {learningSession.question ? (
@@ -72,7 +70,6 @@ export const Learn = ({ moduleId }: LearnProps) => {
               <CircleCheckBig size={25} />
             </span>
             <div>
-              <span>SESSION COMPLETE</span>
               <h2>
                 {learningSession.cards.length
                   ? 'Every word is mastered.'

@@ -7,20 +7,12 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 14px;
+
   h2 {
-    margin: 12px 0 6px;
+    margin: 0;
     font-size: 21px;
   }
-  p {
-    color: var(--color-muted);
-    margin: 0 0 16px;
-    font-size: 14px;
-  }
-  &Step {
-    font-family: var(--font-family-mono);
-    color: var(--color-accent);
-    font-size: 12px;
-  }
+
   label {
     font-size: 13px;
     font-weight: 600;
@@ -49,7 +41,9 @@
     }
   }
   [role='alert'] {
+    margin: 0;
     color: var(--color-danger);
+    font-size: 14px;
   }
 }
 

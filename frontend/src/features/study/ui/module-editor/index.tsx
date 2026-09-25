@@ -1,5 +1,5 @@
 import * as Separator from '@radix-ui/react-separator';
-import { Layers3, Plus, Save } from 'lucide-react';
+import { Plus, Save } from 'lucide-react';
 import { FormProvider } from 'react-hook-form';
 
 import { routes } from '@app/router/constants';
@@ -26,18 +26,7 @@ export const ModuleEditor = ({ module }: ModuleEditorProps) => {
       <div className={styles.editor}>
         <BackLink to={routes.study}>All collections</BackLink>
         <header className={styles.editorHeader}>
-          <span className={styles.editorIcon}>
-            <Layers3 size={28} />
-          </span>
-          <div>
-            <p className={styles.editorEyebrow}>YOUR PERSONAL WORD BANK</p>
-            <h1>{module ? 'Make it your own.' : 'Small words. Big progress.'}</h1>
-            <p>
-              {module
-                ? 'Refine your collection and keep learning.'
-                : 'Build a collection today. Make the words yours tomorrow.'}
-            </p>
-          </div>
+          <h1>{module ? 'Edit module' : 'Create module'}</h1>
         </header>
         <form onSubmit={submit}>
           <fieldset className={styles.editorBody} disabled={saveMutation.isPending}>
@@ -46,7 +35,6 @@ export const ModuleEditor = ({ module }: ModuleEditorProps) => {
             <section className={styles.editorCards}>
               <header className={styles.editorCardsHeader}>
                 <div>
-                  <span className={styles.editorEyebrow}>02 / THE WORDS</span>
                   <h2>
                     Your flashcards <span>{cardCount}</span>
                   </h2>
@@ -82,11 +70,7 @@ export const ModuleEditor = ({ module }: ModuleEditorProps) => {
           </fieldset>
           {saveMutation.error && <p role="alert">{saveMutation.error.message}</p>}
           <footer className={styles.editorFooter}>
-            <p>
-              {module
-                ? 'Saving ends the current Learn session. Your progress is kept.'
-                : 'A little practice now. A bigger vocabulary later.'}
-            </p>
+            {module && <p>Saving ends the current Learn session. Your progress is kept.</p>}
             <Button type="submit" disabled={saveMutation.isPending || cardCount === 0}>
               <Save size={16} />
               {saveMutation.isPending ? 'Saving…' : module ? 'Save changes' : 'Create module'}

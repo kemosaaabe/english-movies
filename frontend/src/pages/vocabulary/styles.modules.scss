@@ -12,20 +12,8 @@
       font-size: clamp(36px, 6vw, 58px);
       letter-spacing: -2px;
       line-height: 1.1;
-      margin: 18px 0;
-    }
-    p {
-      color: var(--color-muted);
       margin: 0;
     }
-  }
-  &Eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--color-accent);
-    font: 11px var(--font-family-mono);
-    letter-spacing: 1.5px;
   }
   &Filters {
     display: grid;

@@ -42,18 +42,9 @@
   margin-bottom: 26px;
 }
 
-.eyebrow {
-  margin: 0 0 8px;
-  color: var(--color-accent);
-  font-family: var(--font-family-mono);
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-}
-
 .title {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  letter-spacing: -3.4px;
+  letter-spacing: -1px;
 }
 
 .counter {

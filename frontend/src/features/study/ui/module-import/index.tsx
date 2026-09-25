@@ -48,10 +48,7 @@ export const ModuleImport = ({ onImport, disabled }: ModuleImportProps) => {
         <Dialog.Overlay className={styles.importOverlay} />
         <Dialog.Content className={styles.importDialog}>
           <header className={styles.importHeader}>
-            <div>
-              <span className={styles.importEyebrow}>LESS TYPING, MORE LEARNING</span>
-              <Dialog.Title>Bring your words along</Dialog.Title>
-            </div>
+            <Dialog.Title>Import words</Dialog.Title>
             <Dialog.Close asChild>
               <Button variant="ghost" type="button">
                 <X size={16} />

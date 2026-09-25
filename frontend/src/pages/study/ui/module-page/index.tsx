@@ -89,9 +89,8 @@ export const ModulePage = ({ moduleId, mode }: ModulePageProps) => {
       <section className={styles.pagePanel}>
         <header className={styles.pagePanelHeader}>
           <div>
-            <p className={styles.pageEyebrow}>MODULE OVERVIEW</p>
-            <h2>{module.title}</h2>
-            <p>{module.description || 'A collection of words you are making your own.'}</p>
+            <h1>{module.title}</h1>
+            {module.description && <p>{module.description}</p>}
             <span className={styles.pageMeta}>
               {module.cards.length} {module.cards.length === 1 ? 'card' : 'cards'} · Updated{' '}
               {new Date(module.updatedAt).toLocaleDateString()}

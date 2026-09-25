@@ -23,7 +23,7 @@
     background: var(--color-surface);
     box-shadow: 0 24px 80px var(--color-panel-shadow);
     h2 {
-      margin: 10px 0;
+      margin: 0;
       font-size: 26px;
       letter-spacing: -0.7px;
     }
@@ -46,11 +46,6 @@
       min-height: 32px;
       font-size: 12px;
     }
-  }
-  &Eyebrow {
-    font: 10px var(--font-family-mono);
-    letter-spacing: 1px;
-    color: var(--color-accent);
   }
   &Tabs {
     display: flex;
