@@ -1,0 +1,75 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.words {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-panel-background);
+  &Row {
+    display: grid;
+    gap: 16px;
+    padding: 22px;
+    border-bottom: 1px solid var(--color-border);
+    transition: background 180ms ease;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      background: var(--color-field-background-active);
+    }
+  }
+  &Term,
+  &Meaning {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    > span {
+      display: block;
+      color: var(--color-muted);
+      font: 10px var(--font-family-mono);
+      margin-bottom: 6px;
+    }
+    strong {
+      font-size: 16px;
+    }
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+  }
+  &Module {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: start;
+    align-self: center;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 12px;
+    span {
+      overflow-wrap: anywhere;
+    }
+    svg {
+      flex-shrink: 0;
+    }
+    &:hover {
+      color: var(--color-accent-hover);
+    }
+  }
+}
+@media (min-width: breakpoints.$wide) {
+  .wordsRow {
+    grid-template-columns: 1fr 1.4fr 0.8fr;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wordsRow {
+    transition: none;
+  }
+}

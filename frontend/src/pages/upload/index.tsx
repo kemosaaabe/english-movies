@@ -1,38 +1,51 @@
+import { Link } from 'react-router-dom';
+
+import { routes } from '@app/router/constants';
 import { UploadExerciseForm } from '@features/upload-exercise';
-import { Logo, Typography } from '@shared/ui';
+import { Button, Logo, Typography } from '@shared/ui';
 
 import styles from './styles.modules.scss';
 
-export const UploadPage = () => (
-  <div className={styles.page}>
-    <header className={styles.header}>
-      <Logo />
-    </header>
-    <main className={styles.main}>
-      <section className={styles.intro}>
-        <Typography as="p" className={styles.eyebrow} variant="caption">
-          Listen · Type · Learn
-        </Typography>
-        <Typography as="h1" className={styles.title} variant="h1">
-          Train your
-          <Typography variant="h1">movie ear.</Typography>
-        </Typography>
-        <Typography as="p" className={styles.description} variant="bodyL">
-          Turn a scene you love into a focused listening workout. Add a video and its subtitles, choose a range, and
-          we’ll build as many exercises as needed—with up to 10 clips each.
-        </Typography>
-      </section>
-      <section className={styles.panel}>
-        <div className={styles.panelHeader}>
-          <Typography className={styles.step} variant="caption">
-            New session · 01
+export const UploadPage = () => {
+  return (
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <Logo to={routes.upload} />
+        <nav className={styles.headerNavigation}>
+          <Button asChild variant="ghost">
+            <Link to={routes.study}>Modules</Link>
+          </Button>
+          <Button asChild variant="ghost">
+            <Link to={routes.vocabulary}>Vocabulary</Link>
+          </Button>
+        </nav>
+      </header>
+      <main className={styles.main}>
+        <section className={styles.intro}>
+          <Typography as="p" className={styles.eyebrow} variant="caption">
+            Listen · Type · Learn
           </Typography>
-          <Typography as="h2" className={styles.panelTitle} variant="h2">
-            Add your files
+          <Typography as="h1" className={styles.title} variant="h1">
+            Train your
+            <Typography variant="h1">movie ear.</Typography>
           </Typography>
-        </div>
-        <UploadExerciseForm />
-      </section>
-    </main>
-  </div>
-);
+          <Typography as="p" className={styles.description} variant="bodyL">
+            Turn a scene you love into a focused listening workout. Add a video and its subtitles, choose a
+            range, and we’ll build as many exercises as needed—with up to 10 clips each.
+          </Typography>
+        </section>
+        <section className={styles.panel}>
+          <div className={styles.panelHeader}>
+            <Typography className={styles.step} variant="caption">
+              New session · 01
+            </Typography>
+            <Typography as="h2" className={styles.panelTitle} variant="h2">
+              Add your files
+            </Typography>
+          </div>
+          <UploadExerciseForm />
+        </section>
+      </main>
+    </div>
+  );
+};

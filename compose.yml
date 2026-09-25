@@ -1,9 +1,30 @@
 services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: english_movies
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-english_movies}
+      POSTGRES_DB: english_movies
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U english_movies -d english_movies']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://english_movies:${POSTGRES_PASSWORD:-english_movies}@postgres:5432/english_movies
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
     ports:
       - '3000:3000'
 
@@ -16,3 +37,6 @@ services:
       - backend
     ports:
       - '8080:80'
+
+volumes:
+  postgres_data:

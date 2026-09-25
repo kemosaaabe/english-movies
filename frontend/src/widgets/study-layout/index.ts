@@ -1,0 +1,1 @@
+export { StudyLayout } from './ui';

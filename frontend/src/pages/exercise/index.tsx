@@ -82,7 +82,7 @@ export const ExercisePage = () => {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <Logo />
+        <Logo to={routes.upload} />
         <Link className={styles.exit} to={routes.upload} onClick={handleExit}>
           <Typography variant="bodyS">End session</Typography>
         </Link>
@@ -101,12 +101,24 @@ export const ExercisePage = () => {
             Clip {String(currentClipNumber).padStart(2, '0')} / {String(currentExerciseSegmentCount).padStart(2, '0')}
           </Typography>
         </div>
-        <Progress
-          className={styles.progressRoot}
-          indicatorClassName={styles.progressIndicator}
-          indicatorStyle={{ transform: `translateX(-${100 - progress}%)` }}
-          value={progress}
-        />
+        <section className={styles.progressPanel}>
+          <div className={styles.progressMeta}>
+            <span>Exercise progress</span>
+            <strong>{Math.round(progress)}%</strong>
+          </div>
+          <Progress
+            className={styles.progressRoot}
+            indicatorClassName={styles.progressIndicator}
+            indicatorStyle={{ transform: `translateX(-${100 - progress}%)` }}
+            value={progress}
+          />
+          <div className={styles.progressCaption}>
+            <span>
+              {currentClipNumber} of {currentExerciseSegmentCount} clips
+            </span>
+            <span>Keep going — each replay trains your ear.</span>
+          </div>
+        </section>
         <ExercisePlayer />
       </main>
     </div>

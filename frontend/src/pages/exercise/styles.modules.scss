@@ -62,10 +62,44 @@
 }
 
 .progress {
+  &Panel {
+    display: grid;
+    gap: 12px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-field-background);
+  }
+
+  &Meta,
+  &Caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &Meta {
+    span {
+      color: var(--color-text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    strong {
+      padding: 5px 9px;
+      border: 1px solid var(--color-field-border-active);
+      border-radius: 999px;
+      background: var(--color-icon-background);
+      color: var(--color-accent);
+      font: 11px var(--font-family-mono);
+    }
+  }
+
   &Root {
     position: relative;
-    height: 3px;
-    margin-bottom: 28px;
+    height: 9px;
     overflow: hidden;
     border-radius: 99px;
     background: var(--color-progress-track);
@@ -74,8 +108,21 @@
   &Indicator {
     width: 100%;
     height: 100%;
-    background: var(--color-accent);
-    transition: transform 280ms ease;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent));
+    box-shadow: 0 0 18px var(--color-live-ring);
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &Caption {
+    flex-wrap: wrap;
+    color: var(--color-muted);
+    font-size: 11px;
+
+    span:first-child {
+      color: var(--color-accent-secondary);
+      font-family: var(--font-family-mono);
+    }
   }
 }
 
@@ -91,7 +138,7 @@
     max-width: 430px;
     padding: 40px;
     border: 1px solid var(--color-border);
-    border-radius: 22px;
+    border-radius: 14px;
     background: var(--color-surface);
 
     & h1 {
@@ -126,5 +173,11 @@
   .topline {
     grid-template-columns: 1fr auto;
     gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressIndicator {
+    transition: none;
   }
 }

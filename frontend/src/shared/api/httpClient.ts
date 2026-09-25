@@ -1,4 +1,5 @@
 import axios, { type AxiosError } from 'axios';
+
 import { apiBaseUrl } from './constants';
 import { HttpError } from './HttpError';
 import type { HttpErrorResponse } from './types';
@@ -12,6 +13,9 @@ const handleHttpError = (error: AxiosError<HttpErrorResponse>) => {
 
 export const httpClient = axios.create({
   baseURL: apiBaseUrl,
+  withCredentials: true,
 });
 
-httpClient.interceptors.response.use((response) => response, handleHttpError);
+httpClient.interceptors.response.use((response) => {
+  return response;
+}, handleHttpError);

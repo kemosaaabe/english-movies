@@ -1,0 +1,139 @@
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-panel-background);
+  box-shadow: 0 16px 40px var(--color-panel-shadow);
+  cursor: pointer;
+  animation: tileEnter 360ms ease both;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+  &:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-border-hover);
+    background: var(--color-surface);
+    box-shadow: 0 24px 56px var(--color-panel-shadow);
+  }
+  &Top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  &Icon {
+    display: inline-flex;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-icon-background);
+    color: var(--color-accent);
+  }
+  &Count {
+    font: 12px var(--font-family-mono);
+    color: var(--color-muted);
+  }
+  &Title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--color-text);
+    text-decoration: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+    }
+
+    &:focus-visible {
+      outline: 0;
+
+      &::after {
+        outline: 3px solid var(--color-focus-ring);
+        outline-offset: 3px;
+      }
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -0.6px;
+      overflow-wrap: anywhere;
+    }
+    svg {
+      flex-shrink: 0;
+      color: var(--color-muted);
+      transition:
+        color 180ms ease,
+        transform 180ms ease;
+    }
+    &:hover {
+      color: var(--color-accent);
+      svg {
+        color: var(--color-accent);
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+  &Description {
+    margin: 12px 0 20px;
+    color: var(--color-muted);
+    line-height: 1.7;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+  &Date {
+    margin: auto 0 20px;
+    color: var(--color-muted);
+    font-size: 11px;
+    font-family: var(--font-family-mono);
+  }
+  &Actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    a {
+      min-height: 42px;
+      padding-inline: 14px;
+      font-size: 12px;
+    }
+  }
+}
+
+@keyframes tileEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    animation: none;
+    transition: none;
+    &:hover {
+      transform: none;
+    }
+    &Title svg {
+      transition: none;
+    }
+  }
+}

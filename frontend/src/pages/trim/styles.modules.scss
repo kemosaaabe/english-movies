@@ -18,15 +18,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.back {
-  color: var(--color-muted);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--color-text);
-  }
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-block: 12px;
 }
 
 .main {

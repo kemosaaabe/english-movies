@@ -5,24 +5,33 @@
   height: 100%;
   display: block;
   object-fit: contain;
+  cursor: pointer;
 
   &Panel {
+    padding: 8px;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: 18px;
-    background: var(--color-surface);
+    border-radius: 16px;
+    background: linear-gradient(145deg, var(--color-surface-raised), var(--color-surface));
+    box-shadow: 0 22px 60px var(--color-panel-shadow);
   }
 
   &Wrap {
     position: relative;
-    aspect-ratio: 16 / 10;
-    background: var(--color-video-background);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--color-video-badge-border);
+    border-radius: 10px;
+    background:
+      radial-gradient(circle at 50% 45%, var(--color-surface-raised), var(--color-transparent) 42%),
+      var(--color-video-background);
   }
 
   &Badge {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    z-index: 3;
+    top: 14px;
+    left: 14px;
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -31,46 +40,166 @@
     border-radius: 999px;
     color: var(--color-video-badge-text);
     background: var(--color-video-badge-background);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     font-family: var(--font-family-mono);
     letter-spacing: 0.7px;
     text-transform: uppercase;
   }
 
-  &Controls {
+  &CenterControl {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    width: 68px;
+    height: 68px;
+    padding: 0;
+    border: 1px solid var(--color-video-badge-border);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: color-mix(in srgb, var(--color-accent) 88%, transparent);
+    color: var(--color-accent-ink);
+    box-shadow:
+      0 15px 45px var(--color-panel-shadow),
+      0 0 0 8px var(--color-live-ring);
+    cursor: pointer;
+    animation: controlEnter 220ms ease both;
+
+    span {
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    &:hover {
+      background: var(--color-accent-hover);
+      transform: translate(-50%, -50%) scale(1.04);
+    }
+  }
+
+  &Shade {
+    position: absolute;
+    z-index: 1;
+    inset: auto 0 0;
+    height: 42%;
+    background: linear-gradient(var(--color-transparent), var(--color-video-shade));
+    pointer-events: none;
+  }
+
+  &ControlShelf {
+    position: absolute;
+    z-index: 3;
+    right: 14px;
+    bottom: 12px;
+    left: 14px;
+    display: grid;
+    gap: 10px;
+  }
+
+  &Progress {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--color-video-control-track);
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent));
+      transition: width 140ms linear;
+    }
+  }
+
+  &Toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 20px;
+    gap: 12px;
+  }
+
+  &Actions {
+    display: flex;
+    gap: 6px;
+
+    button {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 9px;
+      border: 1px solid var(--color-video-badge-border);
+      border-radius: 999px;
+      background: var(--color-video-badge-background);
+      color: var(--color-video-badge-text);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        border-color: var(--color-field-border-active);
+        color: var(--color-accent);
+      }
+
+    }
   }
 }
 
-.live {
-  &Dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    box-shadow: 0 0 0 4px var(--color-live-ring);
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-live-ring);
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+
+.clipTime {
+  display: none;
+  color: var(--color-video-badge-text);
+  font-family: var(--font-family-mono);
+  white-space: nowrap;
+}
+
+@keyframes controlEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 8px)) scale(0.94);
   }
 }
 
-.clip {
-  &Time {
-    color: var(--color-muted);
-    font-family: var(--font-family-mono);
+@keyframes livePulse {
+  50% {
+    box-shadow: 0 0 0 7px var(--color-live-ring);
   }
-}
-
-.replay {
-  min-height: 40px;
-  padding-inline: 14px;
 }
 
 @media (min-width: breakpoints.$small) {
-  .video {
-    &Panel {
-      border-radius: 24px;
-    }
+  .videoPanel {
+    border-radius: 16px;
+  }
+
+  .videoCenterControl {
+    width: 82px;
+    height: 82px;
+  }
+
+  .clipTime {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoCenterControl,
+  .liveDot {
+    animation: none;
+  }
+
+  .videoProgress span {
+    transition: none;
   }
 }

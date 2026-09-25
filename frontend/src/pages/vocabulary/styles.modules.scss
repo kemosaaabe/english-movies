@@ -1,0 +1,94 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.vocabulary {
+  &Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-block: 12px 36px;
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+    p {
+      color: var(--color-muted);
+      margin: 0;
+    }
+  }
+  &Eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-accent);
+    font: 11px var(--font-family-mono);
+    letter-spacing: 1.5px;
+  }
+  &Filters {
+    display: grid;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-panel-background);
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+    input {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px;
+      border: 1px solid var(--color-input-border);
+      border-radius: 10px;
+      background: var(--color-input-background);
+      color: var(--color-text);
+      font: inherit;
+    }
+  }
+  &Search {
+    position: relative;
+    svg {
+      position: absolute;
+      top: 15px;
+      left: 14px;
+      color: var(--color-muted);
+      pointer-events: none;
+    }
+    input {
+      padding-left: 42px;
+    }
+  }
+  &Count {
+    color: var(--color-muted);
+    font: 12px var(--font-family-mono);
+    margin-block: 24px 16px;
+  }
+  &Empty {
+    padding: 48px 24px;
+    text-align: center;
+    border: 1px dashed var(--color-border);
+    border-radius: 14px;
+    color: var(--color-muted);
+    h2 {
+      color: var(--color-text);
+    }
+    svg {
+      color: var(--color-accent);
+    }
+    p {
+      max-width: 480px;
+      margin: 16px auto 24px;
+    }
+  }
+}
+@media (min-width: breakpoints.$wide) {
+  .vocabularyFilters {
+    grid-template-columns: 2fr 1fr;
+  }
+}

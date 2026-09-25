@@ -1,0 +1,147 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.learn {
+  display: grid;
+  gap: 20px;
+  max-width: 860px;
+  margin-inline: auto;
+
+  &Header {
+    span {
+      color: var(--color-accent);
+      font: 11px var(--font-family-mono);
+      letter-spacing: 1.8px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin: 14px 0;
+    }
+    p {
+      color: var(--color-muted);
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+  > p {
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  &Complete {
+    padding: clamp(22px, 4vw, 32px);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 100% 0%, var(--color-accent-glow-faint), var(--color-transparent) 44%),
+      var(--color-panel-background);
+    box-shadow: 0 20px 60px var(--color-panel-shadow);
+  }
+
+  &CompleteHeader {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    > div > span {
+      color: var(--color-accent);
+      font: 12px var(--font-family-mono);
+      letter-spacing: 1.4px;
+    }
+
+    h2 {
+      margin: 8px 0;
+      font-size: clamp(28px, 5vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    p {
+      max-width: 590px;
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+  }
+
+  &CompleteIcon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-field-border-active);
+    border-radius: 10px;
+    background: var(--color-icon-background);
+    color: var(--color-accent);
+  }
+
+  &CompleteMetrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 26px 0;
+
+    > div {
+      min-width: 0;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-field-background);
+    }
+
+    dt {
+      color: var(--color-muted);
+      font-size: 14px;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--color-text);
+      font: 30px var(--font-family-mono);
+    }
+
+    > div:last-child dd {
+      color: var(--color-accent);
+    }
+  }
+
+  &CompleteFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 14px;
+  }
+
+  &Actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+  > a {
+    justify-self: start;
+  }
+  [role='alert'] {
+    color: var(--color-danger);
+  }
+}
+
+@media (min-width: breakpoints.$medium) {
+  .learnCompleteMetrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

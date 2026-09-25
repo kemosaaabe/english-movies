@@ -1,0 +1,115 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.question {
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-panel-background);
+  box-shadow: 0 20px 60px var(--color-panel-shadow);
+  animation: appear 220ms ease both;
+  > p {
+    margin: 0;
+    font: 11px var(--font-family-mono);
+    letter-spacing: 1px;
+    color: var(--color-muted);
+  }
+  h3 {
+    font-size: clamp(26px, 4vw, 38px);
+    line-height: 1.35;
+    margin: 24px 0 32px;
+    letter-spacing: -0.8px;
+    overflow-wrap: anywhere;
+  }
+  &Options {
+    display: grid;
+    gap: 12px;
+    button {
+      justify-content: flex-start;
+      text-align: left;
+      min-height: 64px;
+      padding: 18px;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+      border-radius: 10px;
+      &:hover:not(:disabled) {
+        border-color: var(--color-accent);
+        background: var(--color-icon-background);
+      }
+    }
+  }
+  &Correct,
+  &Incorrect {
+    padding: 20px;
+    border-radius: 10px;
+    animation: appear 220ms ease both;
+    h4 {
+      margin-top: 0;
+    }
+    p {
+      overflow-wrap: anywhere;
+    }
+  }
+  &FeedbackActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  &Correct {
+    color: var(--color-success);
+    background: var(--color-success-background);
+    border: 1px solid var(--color-success-border);
+  }
+  &Incorrect {
+    color: var(--color-danger-text);
+    background: var(--color-danger-background);
+    border: 1px solid var(--color-danger-border);
+  }
+  form {
+    display: grid;
+    gap: 14px;
+    label {
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+  }
+  input {
+    padding: 16px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 12px;
+    background: var(--color-input-background);
+    color: var(--color-text);
+    transition: border-color 180ms ease;
+    &:focus {
+      border-color: var(--color-accent);
+    }
+  }
+  [role='alert'] {
+    color: var(--color-danger);
+  }
+}
+@media (min-width: breakpoints.$small) {
+  .questionOptions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .question,
+  .questionCorrect,
+  .questionIncorrect {
+    animation: none;
+  }
+  .question input {
+    transition: none;
+  }
+}

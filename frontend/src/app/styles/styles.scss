@@ -1,55 +1,59 @@
 :root {
   --font-family-sans: 'Manrope', system-ui, sans-serif;
   --font-family-mono: 'DM Mono', monospace;
+  --font-family-display: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --color-background: #0b0d14;
-  --color-surface: #12151f;
-  --color-surface-raised: #181c27;
-  --color-surface-raised-hover: #202532;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-hover: rgba(255, 255, 255, 0.22);
-  --color-muted: #9398aa;
-  --color-text: #f4f3f7;
-  --color-accent: #d9ff57;
-  --color-accent-hover: #e4ff7b;
-  --color-accent-ink: #151b02;
-  --color-danger: #ff6f79;
-  --color-success: #80e8b0;
+  --color-background: #10120f;
+  --color-surface: #181b17;
+  --color-surface-raised: #21251f;
+  --color-surface-raised-hover: #292f27;
+  --color-border: rgba(248, 242, 226, 0.11);
+  --color-border-hover: rgba(248, 242, 226, 0.25);
+  --color-muted: #a5a69d;
+  --color-text: #f8f2e2;
+  --color-accent: #ffb45c;
+  --color-accent-hover: #ffc77f;
+  --color-accent-ink: #2c1907;
+  --color-accent-secondary: #8cc9b7;
+  --color-danger: #ff7d78;
+  --color-success: #8ed0ac;
   --color-transparent: transparent;
-  --color-focus-ring: rgba(217, 255, 87, 0.42);
-  --color-page-glow: rgba(108, 81, 255, 0.13);
-  --color-page-glow-soft: rgba(108, 81, 255, 0.12);
-  --color-accent-glow-faint: rgba(217, 255, 87, 0.06);
-  --color-grid-line: rgba(255, 255, 255, 0.025);
-  --color-text-outline: rgba(244, 243, 247, 0.45);
-  --color-panel-background: rgba(18, 21, 31, 0.82);
-  --color-panel-shadow: rgba(0, 0, 0, 0.38);
-  --color-divider: rgba(255, 255, 255, 0.07);
-  --color-footer-text: #666c7e;
-  --color-progress-track: rgba(255, 255, 255, 0.08);
-  --color-field-border: rgba(255, 255, 255, 0.2);
-  --color-field-background: rgba(255, 255, 255, 0.025);
-  --color-field-border-active: rgba(217, 255, 87, 0.55);
-  --color-field-background-active: rgba(217, 255, 87, 0.045);
-  --color-icon-background: rgba(217, 255, 87, 0.09);
+  --color-focus-ring: rgba(255, 180, 92, 0.44);
+  --color-page-glow: rgba(255, 132, 82, 0.14);
+  --color-page-glow-soft: rgba(140, 201, 183, 0.1);
+  --color-accent-glow-faint: rgba(255, 180, 92, 0.07);
+  --color-grid-line: rgba(248, 242, 226, 0.025);
+  --color-text-outline: rgba(248, 242, 226, 0.38);
+  --color-panel-background: rgba(24, 27, 23, 0.88);
+  --color-panel-shadow: rgba(0, 0, 0, 0.32);
+  --color-divider: rgba(248, 242, 226, 0.07);
+  --color-footer-text: #71746c;
+  --color-progress-track: rgba(248, 242, 226, 0.09);
+  --color-field-border: rgba(248, 242, 226, 0.2);
+  --color-field-background: rgba(248, 242, 226, 0.025);
+  --color-field-border-active: rgba(255, 180, 92, 0.58);
+  --color-field-background-active: rgba(255, 180, 92, 0.05);
+  --color-icon-background: rgba(255, 180, 92, 0.1);
   --color-danger-border: rgba(255, 111, 121, 0.28);
   --color-danger-border-strong: rgba(255, 111, 121, 0.62);
   --color-danger-text: #ffb2b7;
   --color-danger-background: rgba(255, 111, 121, 0.08);
   --color-danger-background-soft: rgba(255, 111, 121, 0.075);
   --color-spinner-track: rgba(21, 27, 2, 0.3);
-  --color-input-border: rgba(255, 255, 255, 0.14);
-  --color-input-background: #0c0f17;
-  --color-answer-button-background: rgba(217, 255, 87, 0.08);
+  --color-input-border: rgba(248, 242, 226, 0.15);
+  --color-input-background: #111410;
+  --color-answer-button-background: rgba(255, 180, 92, 0.09);
   --color-success-border: rgba(128, 232, 176, 0.62);
   --color-success-background: rgba(128, 232, 176, 0.075);
-  --color-video-background: #05060a;
-  --color-video-badge-border: rgba(255, 255, 255, 0.13);
-  --color-video-badge-text: #d7d9e1;
-  --color-video-badge-background: rgba(5, 6, 10, 0.66);
-  --color-live-ring: rgba(217, 255, 87, 0.12);
-  --color-ghost-background: rgba(255, 255, 255, 0.06);
+  --color-video-background: #080a08;
+  --color-video-badge-border: rgba(248, 242, 226, 0.14);
+  --color-video-badge-text: #e5e0d3;
+  --color-video-badge-background: rgba(8, 10, 8, 0.72);
+  --color-video-control-track: rgba(248, 242, 226, 0.2);
+  --color-video-shade: rgba(0, 0, 0, 0.84);
+  --color-live-ring: rgba(255, 180, 92, 0.16);
+  --color-ghost-background: rgba(248, 242, 226, 0.07);
 
   font-family: var(--font-family-sans);
   color: var(--color-text);
@@ -70,11 +74,23 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-display);
+  font-weight: 600;
 }
 
 button,

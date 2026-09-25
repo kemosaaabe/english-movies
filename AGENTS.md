@@ -40,7 +40,11 @@ paths when an existing frontend alias can address the module.
 
 ## TypeScript
 
-- Keep strict typing and add explicit return or variable types when they improve readability.
+- Keep strict typing, but prefer contextual TypeScript inference. Do not add redundant return or variable
+  annotations, including `Promise<void>`, when TypeScript infers them correctly. Keep explicit types for domain
+  contracts, parameters, and cases where inference needs guidance.
+- Separate interfaces and other top-level declarations with a blank line.
+- Group related state, derived values, and handlers together; separate these logical groups with blank lines.
 - Never use `any`.
 - Never explicitly use or assign `undefined`. Use optional properties, omitted arguments, or an appropriate domain
   value.
@@ -56,7 +60,7 @@ if (segments.length === 0) {
   return [];
 }
 
-const getSegmentCount = (segments: SubtitleSegment[]): number => {
+const getSegmentCount = (segments: SubtitleSegment[]) => {
   const segmentCount = segments.length;
 
   return segmentCount;
@@ -142,6 +146,9 @@ re-exports.
 - Split large components into sensible UI and logic blocks with clear responsibilities.
 - Extract a child component when a JSX section has its own responsibility, is reused, or makes its parent difficult to
   scan. Do not split components into trivial wrappers that add no clarity.
+
+- Use shared Radix UI selects and checkboxes instead of native select and checkbox controls.
+- Use Radix UI confirmation dialogs instead of JavaScript `alert`, `confirm`, or `prompt` dialogs.
 
 ## Accessible form markup
 

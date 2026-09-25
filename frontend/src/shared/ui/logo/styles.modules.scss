@@ -4,6 +4,16 @@
   gap: 12px;
   color: var(--color-text);
   letter-spacing: -0.5px;
+  text-decoration: none;
+
+  &:hover .mark {
+    transform: rotate(-4deg) scale(1.04);
+    box-shadow: 0 8px 24px var(--color-live-ring);
+  }
+
+  &:hover .bar {
+    animation: equalize 620ms ease-in-out infinite alternate;
+  }
 }
 
 .name {
@@ -21,6 +31,25 @@
   border-radius: 10px;
   color: var(--color-accent-ink);
   background: var(--color-accent);
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+@keyframes equalize {
+  to {
+    transform: scaleY(0.62);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo:hover .bar {
+    animation: none;
+  }
+
+  .mark {
+    transition: none;
+  }
 }
 
 .bar {

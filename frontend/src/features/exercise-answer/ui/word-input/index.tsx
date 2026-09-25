@@ -1,10 +1,12 @@
 import { KeyRound } from 'lucide-react';
 import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
 
+import { SaveWord } from '@features/study';
 import { normalizeWord } from '@shared/lib';
 import { Button, Typography } from '@shared/ui';
 
 import type { WordInputProps } from '../../types';
+
 import styles from './styles.modules.scss';
 
 export const WordInput = ({
@@ -44,11 +46,16 @@ export const WordInput = ({
   };
 
   const toggleAnswer = () => {
-    setIsAnswerVisible((isVisible) => !isVisible);
+    setIsAnswerVisible((isVisible) => {
+      return !isVisible;
+    });
   };
 
   return (
     <div className={styles.wordGroup}>
+      <label className={styles.wordLabel} htmlFor={inputId}>
+        Word {wordIndex + 1}
+      </label>
       <div className={styles.inputWrap}>
         <input
           className={`${styles.wordInput} ${validationClassName}`}
@@ -58,10 +65,15 @@ export const WordInput = ({
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
+        <SaveWord className={styles.saveButton} word={expectedWord} />
         <Button
           className={answerButtonClassName}
           type="button"
-          title={isAnswerVisible ? `Hide answer for word ${wordIndex + 1}` : `Show answer for word ${wordIndex + 1}`}
+          title={
+            isAnswerVisible
+              ? `Hide answer for word ${wordIndex + 1}`
+              : `Show answer for word ${wordIndex + 1}`
+          }
           variant="ghost"
           onClick={toggleAnswer}
         >

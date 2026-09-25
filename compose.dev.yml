@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: english_movies
+      POSTGRES_PASSWORD: english_movies
+      POSTGRES_DB: english_movies
+    ports:
+      - '127.0.0.1:${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U english_movies -d english_movies']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /workspace
+    command: npm run dev --workspace=@english-movies/backend
+    environment:
+      DATABASE_URL: postgresql://english_movies:english_movies@postgres:5432/english_movies
+      TSC_WATCHFILE: DynamicPriorityPolling
+    volumes:
+      - ./backend/src:/workspace/backend/src
+    ports:
+      - '${BACKEND_PORT:-3000}:3000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /workspace
+    command: npm run dev --workspace=@english-movies/frontend -- --host 0.0.0.0
+    environment:
+      API_PROXY_TARGET: http://backend:3000
+      VITE_USE_POLLING: 'true'
+    volumes:
+      - ./frontend/src:/workspace/frontend/src
+      - ./frontend/index.html:/workspace/frontend/index.html
+      - ./frontend/vite.config.ts:/workspace/frontend/vite.config.ts
+    ports:
+      - '${FRONTEND_PORT:-5173}:5173'
+    depends_on:
+      - backend
+volumes:
+  postgres_data:

@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "concurrently -n backend,frontend -c magenta,cyan \"npm run dev -w @english-movies/backend\" \"npm run dev -w @english-movies/frontend\"",
     "build": "npm run build -w @english-movies/backend && npm run build -w @english-movies/frontend",
-    "lint": "npm run lint -w @english-movies/backend && npm run lint -w @english-movies/frontend"
+    "lint": "npm run lint -w @english-movies/backend && npm run lint -w @english-movies/frontend",
+    "dev:docker": "docker compose -f compose.dev.yml up --build"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

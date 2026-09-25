@@ -1,6 +1,10 @@
+export { BackLink } from './back-link';
 export { Button } from './button';
 export { FormError } from './form-error';
 export { FormFileInput } from './form-file-input';
 export { Logo } from './logo';
 export { Progress } from './progress';
 export { Typography } from './typography';
+export { Select } from './select';
+export { Checkbox } from './checkbox';
+export { ConfirmationDialog } from './confirmation-dialog';

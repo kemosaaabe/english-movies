@@ -1,0 +1,87 @@
+.select {
+  &Trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 10px;
+    background: var(--color-input-background);
+    color: var(--color-text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 160ms ease;
+    > span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    > span:last-child {
+      display: flex;
+      flex-shrink: 0;
+      color: var(--color-muted);
+    }
+    &:hover {
+      border-color: var(--color-border-hover);
+    }
+    &:focus-visible,
+    &[data-state='open'] {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  &Content {
+    z-index: 100;
+    width: var(--radix-select-trigger-width);
+    max-width: calc(100vw - 24px);
+    max-height: min(320px, var(--radix-select-content-available-height));
+    overflow: hidden;
+    border: 1px solid var(--color-border-hover);
+    border-radius: 12px;
+    background: var(--color-surface-raised);
+    color: var(--color-text);
+    box-shadow: 0 12px 40px var(--color-panel-shadow);
+  }
+  &Viewport {
+    padding: 5px;
+  }
+  &Item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    outline: none;
+    &[data-highlighted] {
+      background: var(--color-ghost-background);
+    }
+    &[data-state='checked'] {
+      color: var(--color-accent);
+      background: var(--color-icon-background);
+    }
+  }
+  &Scroll {
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    color: var(--color-muted);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .selectTrigger {
+    transition: none;
+  }
+}

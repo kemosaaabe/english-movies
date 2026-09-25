@@ -1,4 +1,4 @@
-import { Scissors } from 'lucide-react';
+import { Pause, Play, Scissors, Volume2, VolumeX } from 'lucide-react';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -37,6 +37,9 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
 
   const [duration, setDuration] = useState(initialTrimTime);
   const [conversionProgress, setConversionProgress] = useState(initialTrimTime);
+  const [currentPreviewTime, setCurrentPreviewTime] = useState(initialTrimTime);
+  const [isPreviewMuted, setIsPreviewMuted] = useState(false);
+  const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
   const {
     clearErrors,
     control,
@@ -121,9 +124,36 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
   const handleTimeUpdate = () => {
     const video = videoRef.current;
 
-    if (video && video.currentTime >= endTime) {
+    if (!video) {
+      return;
+    }
+
+    setCurrentPreviewTime(video.currentTime);
+
+    if (video.currentTime >= endTime) {
       video.pause();
     }
+  };
+
+  const togglePreviewPlayback = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    if (!video.paused) {
+      video.pause();
+      return;
+    }
+
+    if (video.currentTime < startTime || video.currentTime >= endTime) {
+      video.currentTime = startTime;
+    }
+
+    video.play().catch(() => {
+      video.pause();
+    });
   };
 
   const handlePreview = () => {
@@ -134,7 +164,9 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
     }
 
     video.currentTime = startTime;
-    video.play().catch(() => video.pause());
+    video.play().catch(() => {
+      video.pause();
+    });
   };
 
   const handleValidSubmit = async ({ endTime: selectedEndTime, startTime: selectedStartTime }: TrimVideoFormValues) => {
@@ -164,7 +196,49 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
   return (
     <section className={styles.panel}>
       <div className={styles.videoWrap}>
-        <video className={styles.video} controls onTimeUpdate={handleTimeUpdate} ref={videoRef} src={previewUrl} />
+        <video
+          className={styles.video}
+          muted={isPreviewMuted}
+          onClick={togglePreviewPlayback}
+          onPause={() => {
+            setIsPreviewPlaying(false);
+          }}
+          onPlay={() => {
+            setIsPreviewPlaying(true);
+          }}
+          onTimeUpdate={handleTimeUpdate}
+          playsInline
+          ref={videoRef}
+          src={previewUrl}
+        />
+        <Typography className={styles.videoBadge} variant="caption">
+          Scene preview
+        </Typography>
+        {!isPreviewPlaying && (
+          <button className={styles.videoPlay} onClick={togglePreviewPlayback} type="button">
+            <Play fill="currentColor" size={28} />
+            <span>Play scene</span>
+          </button>
+        )}
+        <div className={styles.videoShade} />
+        <div className={styles.videoControls}>
+          <button onClick={togglePreviewPlayback} type="button">
+            {isPreviewPlaying ? <Pause fill="currentColor" size={16} /> : <Play fill="currentColor" size={16} />}
+            <span>{isPreviewPlaying ? 'Pause' : 'Play'}</span>
+          </button>
+          <button
+            onClick={() => {
+              setIsPreviewMuted(!isPreviewMuted);
+            }}
+            type="button"
+          >
+            {isPreviewMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            <span>{isPreviewMuted ? 'Sound on' : 'Mute'}</span>
+          </button>
+          <Typography className={styles.videoTime} variant="caption">
+            {formatTrimTime(currentPreviewTime)} / {formatTrimTime(duration)}
+          </Typography>
+        </div>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit(handleValidSubmit)}>

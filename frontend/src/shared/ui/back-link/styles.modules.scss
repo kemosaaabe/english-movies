@@ -1,0 +1,49 @@
+.backLink {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 14px 5px 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-field-background);
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  &Icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-icon-background);
+    color: var(--color-accent);
+    transition: transform 180ms ease;
+  }
+
+  &:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-surface-raised);
+    color: var(--color-text);
+    transform: translateY(-1px);
+
+    .backLinkIcon {
+      transform: translateX(-2px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink,
+  .backLinkIcon {
+    transition: none;
+  }
+}

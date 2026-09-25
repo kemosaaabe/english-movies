@@ -1,0 +1,103 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.editor {
+  display: grid;
+  gap: 28px;
+
+  &Header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding-block: 16px;
+    h1 {
+      margin: 8px 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+    }
+    p {
+      color: var(--color-muted);
+      margin: 8px 0;
+    }
+  }
+  &Icon {
+    display: none;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--color-icon-background);
+    color: var(--color-accent);
+  }
+  &Eyebrow {
+    color: var(--color-accent) !important;
+    font-family: var(--font-family-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+  &Body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    min-width: 0;
+  }
+  &Divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-block: 36px;
+  }
+  &Cards {
+    display: grid;
+    gap: 18px;
+  }
+  &CardsHeader {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    h2 {
+      margin: 8px 0;
+    }
+    h2 span {
+      color: var(--color-accent);
+      font-size: 14px;
+      padding: 4px 10px;
+      background: var(--color-icon-background);
+      border-radius: 20px;
+    }
+    p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 14px;
+    }
+  }
+  &Add {
+    width: 100%;
+    border-style: dashed;
+    min-height: 60px;
+  }
+  &Footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 24px;
+    margin-top: 28px;
+    p {
+      color: var(--color-muted);
+      font-size: 13px;
+      max-width: 440px;
+    }
+  }
+  [role='alert'] {
+    color: var(--color-danger);
+    font-size: 13px;
+  }
+}
+
+@media (min-width: breakpoints.$wide) {
+  .editorIcon {
+    display: flex;
+  }
+}

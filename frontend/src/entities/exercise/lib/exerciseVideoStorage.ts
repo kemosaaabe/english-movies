@@ -50,7 +50,7 @@ export const getExerciseVideo = async (storageId: string): Promise<Blob | null> 
   }
 };
 
-export const removeExerciseVideo = async (storageId: string): Promise<void> => {
+export const removeExerciseVideo = async (storageId: string) => {
   const database = await openExerciseVideoDatabase();
 
   try {
@@ -72,7 +72,7 @@ export const removeExerciseVideo = async (storageId: string): Promise<void> => {
   }
 };
 
-export const saveExerciseVideo = async (storageId: string, video: Blob): Promise<void> => {
+export const saveExerciseVideo = async (storageId: string, video: Blob) => {
   const database = await openExerciseVideoDatabase();
 
   try {
