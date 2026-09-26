@@ -50,13 +50,12 @@ export const Flashcards = ({ detail }: FlashcardsProps) => {
         <h1>{module.title}</h1>
         <p>Think of the answer, then flip the card.</p>
       </header>
-      <FlashcardControls study={study} disabled={statusMutation.isPending} />
       {study.isComplete ? (
         <div>
           <h3>Deck complete</h3>
           <p>
-            {counts.total} total · {counts.known} known · {counts.learning} still learning ·{' '}
-            {counts.unreviewed} unreviewed
+            {counts.total} total · {counts.known} known · {counts.learning} still learning · {counts.unreviewed}{' '}
+            unreviewed
           </p>
           <div className={styles.studyControls}>
             <Button
@@ -79,8 +78,8 @@ export const Flashcards = ({ detail }: FlashcardsProps) => {
       ) : currentCard ? (
         <>
           <p>
-            {study.currentCardIndex + 1} / {study.orderedCards.length} · {study.isFlipped ? 'Back' : 'Front'}{' '}
-            · {progress[currentCard.id]?.flashcardStatus ?? 'unreviewed'}
+            {study.currentCardIndex + 1} / {study.orderedCards.length} · {study.isFlipped ? 'Back' : 'Front'} ·{' '}
+            {progress[currentCard.id]?.flashcardStatus ?? 'unreviewed'}
           </p>
           <FlipCard
             front={study.isReversed ? currentCard.definition : currentCard.term}
@@ -100,6 +99,7 @@ export const Flashcards = ({ detail }: FlashcardsProps) => {
       ) : (
         <p>No cards match this filter. Choose another filter to continue.</p>
       )}
+      <FlashcardControls study={study} disabled={statusMutation.isPending} />
       {statusMutation.error && <p role="alert">Status was not saved: {statusMutation.error.message}</p>}
     </section>
   );

@@ -45,7 +45,6 @@ export const Learn = ({ moduleId }: LearnProps) => {
       <header className={styles.learnHeader}>
         <h1>{learningSession.reviewOnly ? 'Review' : 'Learn'}</h1>
       </header>
-      <LearnProgress session={learningSession} />
       {learningSession.question ? (
         <LearnQuestion
           key={learningSession.question.id}
@@ -70,11 +69,7 @@ export const Learn = ({ moduleId }: LearnProps) => {
               <CircleCheckBig size={25} />
             </span>
             <div>
-              <h2>
-                {learningSession.cards.length
-                  ? 'Every word is mastered.'
-                  : 'Add a word to start practising.'}
-              </h2>
+              <h2>{learningSession.cards.length ? 'Every word is mastered.' : 'Add a word to start practising.'}</h2>
               <p>
                 {learningSession.cards.length
                   ? 'Nice work. Your full session is saved and ready for a quick review anytime.'
@@ -111,10 +106,11 @@ export const Learn = ({ moduleId }: LearnProps) => {
           </footer>
         </section>
       )}
+      <LearnProgress session={learningSession} />
       {mutation.error && (
         <p role="alert">
-          {mutation.error.message} Your last confirmed progress is preserved. Retry, or reload to resume the
-          saved session.
+          {mutation.error.message} Your last confirmed progress is preserved. Retry, or reload to resume the saved
+          session.
         </p>
       )}
       <div className={styles.learnActions}>

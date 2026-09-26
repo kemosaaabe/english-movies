@@ -18,17 +18,12 @@ export const WordList = ({ words }: WordListProps) => {
         return (
           <li key={word.id} className={styles.wordsRow}>
             <div className={styles.wordsTerm}>
-              <span>Word or phrase</span>
               <strong>{word.term}</strong>
             </div>
             <div className={styles.wordsMeaning}>
-              <span>Meaning</span>
               <p>{word.definition}</p>
             </div>
-            <Link
-              className={styles.wordsModule}
-              to={generatePath(routes.studyModule, { moduleId: word.moduleId })}
-            >
+            <Link className={styles.wordsModule} to={generatePath(routes.studyModule, { moduleId: word.moduleId })}>
               <span>{word.moduleTitle}</span>
               <ArrowUpRight size={15} />
             </Link>
