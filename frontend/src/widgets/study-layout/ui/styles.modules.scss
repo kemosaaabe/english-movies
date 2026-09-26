@@ -8,35 +8,13 @@
     var(--color-background);
   line-height: 1.6;
 
-  &Header,
   &Main {
     width: min(1080px, calc(100% - 32px));
     margin-inline: auto;
-  }
-  &Header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    min-height: 100px;
-    padding-block: 20px;
-    border-bottom: 1px solid var(--color-border);
-  }
-  &Navigation {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    a {
-      font-size: 13px;
-      min-height: 42px;
-      padding-inline: 14px;
-    }
-  }
-  &Main {
     padding-block: 32px 80px;
     animation: enter 300ms ease both;
   }
+
   [role='alert'] {
     color: var(--color-danger);
   }
@@ -44,11 +22,8 @@
 
 @media (min-width: breakpoints.$wide) {
   .layout {
-    &Header,
     &Main {
       width: min(1080px, calc(100% - 64px));
-    }
-    &Main {
       padding-top: 48px;
     }
   }

@@ -2,35 +2,16 @@
 
 .page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background:
     radial-gradient(circle at 80% -10%, var(--color-page-glow-soft), var(--color-transparent) 34rem),
     var(--color-background);
 }
 
-.header,
 .main {
   width: min(100% - 28px, 1180px);
   margin-inline: auto;
-}
-
-.header {
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.exit {
-  color: var(--color-muted);
-  text-decoration: none;
-  font-weight: 600;
-
-  &:hover {
-    color: var(--color-text);
-  }
-}
-
-.main {
   padding: 24px 0 70px;
 }
 
@@ -40,6 +21,13 @@
   align-items: end;
   gap: 12px;
   margin-bottom: 26px;
+
+  &Actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 }
 
 .title {
@@ -50,6 +38,16 @@
 .counter {
   color: var(--color-muted);
   font-family: var(--font-family-mono);
+}
+
+.exit {
+  color: var(--color-muted);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-text);
+  }
 }
 
 .progress {
@@ -118,12 +116,13 @@
 }
 
 .empty {
-  min-height: 100vh;
+  flex: 1;
   display: grid;
   place-items: center;
+  width: min(100% - 28px, 1180px);
+  margin-inline: auto;
   padding: 24px;
   text-align: center;
-  background: var(--color-background);
 
   &Card {
     max-width: 430px;
@@ -152,8 +151,8 @@
 }
 
 @media (min-width: breakpoints.$small) {
-  .header,
-  .main {
+  .main,
+  .empty {
     width: min(1180px, calc(100% - 40px));
   }
 

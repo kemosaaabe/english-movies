@@ -24,30 +24,11 @@
   }
 }
 
-.header,
 .main {
   position: relative;
   z-index: 1;
   width: min(100% - 28px, 1080px);
   margin-inline: auto;
-}
-
-.header {
-  &Navigation {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-}
-
-.main {
   flex: 1;
   display: flex;
   align-items: center;
@@ -74,12 +55,8 @@
 }
 
 @media (min-width: breakpoints.$small) {
-  .header,
   .main {
     width: min(1080px, calc(100% - 40px));
-  }
-
-  .main {
     padding-top: 50px;
   }
 

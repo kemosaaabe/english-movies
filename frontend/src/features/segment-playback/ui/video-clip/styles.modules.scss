@@ -18,7 +18,7 @@
 
   &Wrap {
     position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     border: 1px solid var(--color-video-badge-border);
     border-radius: 10px;
@@ -45,108 +45,6 @@
     letter-spacing: 0.7px;
     text-transform: uppercase;
   }
-
-  &CenterControl {
-    position: absolute;
-    z-index: 4;
-    top: 50%;
-    left: 50%;
-    display: grid;
-    place-items: center;
-    gap: 8px;
-    width: 68px;
-    height: 68px;
-    padding: 0;
-    border: 1px solid var(--color-video-badge-border);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background: color-mix(in srgb, var(--color-accent) 88%, transparent);
-    color: var(--color-accent-ink);
-    box-shadow:
-      0 15px 45px var(--color-panel-shadow),
-      0 0 0 8px var(--color-live-ring);
-    cursor: pointer;
-    animation: controlEnter 220ms ease both;
-
-    span {
-      font-size: 10px;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    &:hover {
-      background: var(--color-accent-hover);
-      transform: translate(-50%, -50%) scale(1.04);
-    }
-  }
-
-  &Shade {
-    position: absolute;
-    z-index: 1;
-    inset: auto 0 0;
-    height: 42%;
-    background: linear-gradient(var(--color-transparent), var(--color-video-shade));
-    pointer-events: none;
-  }
-
-  &ControlShelf {
-    position: absolute;
-    z-index: 3;
-    right: 14px;
-    bottom: 12px;
-    left: 14px;
-    display: grid;
-    gap: 10px;
-  }
-
-  &Progress {
-    height: 5px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: var(--color-video-control-track);
-
-    span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent));
-      transition: width 140ms linear;
-    }
-  }
-
-  &Toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  &Actions {
-    display: flex;
-    gap: 6px;
-
-    button {
-      min-height: 32px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0 9px;
-      border: 1px solid var(--color-video-badge-border);
-      border-radius: 999px;
-      background: var(--color-video-badge-background);
-      color: var(--color-video-badge-text);
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-
-      &:hover {
-        border-color: var(--color-field-border-active);
-        color: var(--color-accent);
-      }
-
-    }
-  }
 }
 
 .liveDot {
@@ -158,17 +56,9 @@
   animation: livePulse 1.8s ease-in-out infinite;
 }
 
-.clipTime {
-  display: none;
-  color: var(--color-video-badge-text);
-  font-family: var(--font-family-mono);
-  white-space: nowrap;
-}
-
-@keyframes controlEnter {
-  from {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 8px)) scale(0.94);
+@media (min-width: breakpoints.$small) {
+  .videoWrap {
+    aspect-ratio: 16 / 9;
   }
 }
 
@@ -178,28 +68,8 @@
   }
 }
 
-@media (min-width: breakpoints.$small) {
-  .videoPanel {
-    border-radius: 16px;
-  }
-
-  .videoCenterControl {
-    width: 82px;
-    height: 82px;
-  }
-
-  .clipTime {
-    display: inline;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .videoCenterControl,
   .liveDot {
     animation: none;
-  }
-
-  .videoProgress span {
-    transition: none;
   }
 }

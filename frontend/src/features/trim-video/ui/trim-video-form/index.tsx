@@ -1,4 +1,4 @@
-import { Pause, Play, Scissors, Volume2, VolumeX } from 'lucide-react';
+import { Scissors } from 'lucide-react';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '@app/router/constants';
 import { segmentsPerExercise, useExerciseStore } from '@entities/exercise';
 import type { SubtitleSegment } from '@entities/subtitle-segment';
-import { Button, FormError, Typography } from '@shared/ui';
+import { initialVolume, maximumVolume, minimumVolume } from '@shared/constants';
+import { Button, FormError, Typography, VideoControls } from '@shared/ui';
 
 import {
   defaultTrimError,
@@ -31,6 +32,7 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
   const { setExercise } = useExerciseStore();
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastAudibleVolumeRef = useRef(initialVolume);
 
   const startInputId = useId();
   const endInputId = useId();
@@ -40,6 +42,7 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
   const [currentPreviewTime, setCurrentPreviewTime] = useState(initialTrimTime);
   const [isPreviewMuted, setIsPreviewMuted] = useState(false);
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
+  const [previewVolume, setPreviewVolume] = useState(initialVolume);
   const {
     clearErrors,
     control,
@@ -115,9 +118,62 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
 
   const seekVideo = (time: number) => {
     const video = videoRef.current;
+    const nextTime = Math.min(Math.max(time, initialTrimTime), duration);
 
     if (video) {
-      video.currentTime = time;
+      video.currentTime = nextTime;
+      setCurrentPreviewTime(nextTime);
+    }
+  };
+
+  const changeSelectionStart = (time: number) => {
+    const nextStartTime = Math.max(initialTrimTime, Math.min(time, endTime - minimumTrimDuration));
+
+    setValue('startTime', nextStartTime, { shouldDirty: true });
+    clearErrors('root');
+    seekVideo(nextStartTime);
+  };
+
+  const changePreviewVolume = (nextVolume: number) => {
+    const clampedVolume = Math.min(Math.max(nextVolume, minimumVolume), maximumVolume);
+    const shouldMute = clampedVolume === minimumVolume;
+    const video = videoRef.current;
+
+    if (clampedVolume > minimumVolume) {
+      lastAudibleVolumeRef.current = clampedVolume;
+    }
+
+    setPreviewVolume(clampedVolume);
+    setIsPreviewMuted(shouldMute);
+
+    if (video) {
+      video.volume = clampedVolume;
+      video.muted = shouldMute;
+    }
+  };
+
+  const togglePreviewMute = () => {
+    const video = videoRef.current;
+
+    if (isPreviewMuted || previewVolume === minimumVolume) {
+      const restoredVolume =
+        previewVolume === minimumVolume ? lastAudibleVolumeRef.current : previewVolume;
+
+      setPreviewVolume(restoredVolume);
+      setIsPreviewMuted(false);
+
+      if (video) {
+        video.volume = restoredVolume;
+        video.muted = false;
+      }
+
+      return;
+    }
+
+    setIsPreviewMuted(true);
+
+    if (video) {
+      video.muted = true;
     }
   };
 
@@ -149,6 +205,7 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
 
     if (video.currentTime < startTime || video.currentTime >= endTime) {
       video.currentTime = startTime;
+      setCurrentPreviewTime(startTime);
     }
 
     video.play().catch(() => {
@@ -164,6 +221,7 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
     }
 
     video.currentTime = startTime;
+    setCurrentPreviewTime(startTime);
     video.play().catch(() => {
       video.pause();
     });
@@ -214,31 +272,18 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
         <Typography className={styles.videoBadge} variant="caption">
           Scene preview
         </Typography>
-        {!isPreviewPlaying && (
-          <button className={styles.videoPlay} onClick={togglePreviewPlayback} type="button">
-            <Play fill="currentColor" size={28} />
-            <span>Play scene</span>
-          </button>
-        )}
-        <div className={styles.videoShade} />
-        <div className={styles.videoControls}>
-          <button onClick={togglePreviewPlayback} type="button">
-            {isPreviewPlaying ? <Pause fill="currentColor" size={16} /> : <Play fill="currentColor" size={16} />}
-            <span>{isPreviewPlaying ? 'Pause' : 'Play'}</span>
-          </button>
-          <button
-            onClick={() => {
-              setIsPreviewMuted(!isPreviewMuted);
-            }}
-            type="button"
-          >
-            {isPreviewMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            <span>{isPreviewMuted ? 'Sound on' : 'Mute'}</span>
-          </button>
-          <Typography className={styles.videoTime} variant="caption">
-            {formatTrimTime(currentPreviewTime)} / {formatTrimTime(duration)}
-          </Typography>
-        </div>
+        <VideoControls
+          currentTime={currentPreviewTime}
+          duration={duration}
+          isMuted={isPreviewMuted}
+          isPlaying={isPreviewPlaying}
+          onMuteToggle={togglePreviewMute}
+          onPlaybackToggle={togglePreviewPlayback}
+          onReplay={handlePreview}
+          onSeek={changeSelectionStart}
+          onVolumeChange={changePreviewVolume}
+          volume={previewVolume}
+        />
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit(handleValidSubmit)}>
@@ -296,11 +341,7 @@ export const TrimVideoForm = ({ segments, videoFile }: TrimVideoFormProps) => {
                   max={duration}
                   min={initialTrimTime}
                   onChange={(event) => {
-                    const nextStartTime = Math.min(Number(event.target.value), endTime - minimumTrimDuration);
-
-                    field.onChange(nextStartTime);
-                    clearErrors('root');
-                    seekVideo(nextStartTime);
+                    changeSelectionStart(Number(event.target.value));
                   }}
                   step={trimRangeStep}
                   type="range"

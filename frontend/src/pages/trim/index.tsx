@@ -1,9 +1,10 @@
 import { Navigate } from 'react-router-dom';
 
 import { routes } from '@app/router/constants';
-import { useExerciseStore } from '@entities/exercise';
+import { AppHeader } from '@widgets/app-header';
 import { TrimVideoForm } from '@features/trim-video';
-import { BackLink, Logo, Typography } from '@shared/ui';
+import { useExerciseStore } from '@entities/exercise';
+import { BackLink, Typography } from '@shared/ui';
 
 import styles from './styles.modules.scss';
 
@@ -18,13 +19,11 @@ export const TrimPage = () => {
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <Logo to={routes.upload} />
+      <AppHeader activeSection="moviePractice" />
+      <main className={styles.main}>
         <BackLink onClick={reset} to={routes.upload}>
           Choose different files
         </BackLink>
-      </header>
-      <main className={styles.main}>
         <section className={styles.intro}>
           <Typography as="h1" className={styles.title} variant="h1">
             Trim video

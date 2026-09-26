@@ -7,23 +7,9 @@
     var(--color-background);
 }
 
-.header,
 .main {
   width: min(100% - 28px, 980px);
   margin-inline: auto;
-}
-
-.header {
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-block: 12px;
-}
-
-.main {
   display: grid;
   gap: 30px;
   padding: 24px 0 80px;
@@ -49,12 +35,8 @@
 }
 
 @media (min-width: breakpoints.$small) {
-  .header,
   .main {
     width: min(980px, calc(100% - 40px));
-  }
-
-  .main {
     padding-top: 38px;
   }
 }
