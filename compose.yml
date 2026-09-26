@@ -22,6 +22,8 @@ services:
     environment:
       DATABASE_URL: postgresql://english_movies:${POSTGRES_PASSWORD:-english_movies}@postgres:5432/english_movies
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:8080}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET to a random value of at least 32 characters}
     depends_on:
       postgres:
         condition: service_healthy

@@ -1,4 +1,4 @@
-import { BookOpen, Film, Library } from 'lucide-react';
+import { BookOpen, Film, Library, UserRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { routes } from '@app/router/constants';
@@ -7,7 +7,7 @@ import { Button, Logo } from '@shared/ui';
 import styles from './styles.modules.scss';
 
 interface AppHeaderProps {
-  activeSection: 'moviePractice' | 'modules' | 'vocabulary';
+  activeSection: 'moviePractice' | 'modules' | 'vocabulary' | 'profile';
 }
 
 export const AppHeader = ({ activeSection }: AppHeaderProps) => {
@@ -31,6 +31,12 @@ export const AppHeader = ({ activeSection }: AppHeaderProps) => {
           <Link aria-current={activeSection === 'vocabulary' ? 'page' : false} to={routes.vocabulary}>
             <BookOpen size={16} />
             Vocabulary
+          </Link>
+        </Button>
+        <Button asChild variant={activeSection === 'profile' ? 'secondary' : 'ghost'}>
+          <Link aria-current={activeSection === 'profile' ? 'page' : false} to={routes.profile}>
+            <UserRound size={16} />
+            Profile
           </Link>
         </Button>
       </nav>

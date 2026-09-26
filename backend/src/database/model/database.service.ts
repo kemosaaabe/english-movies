@@ -6,6 +6,7 @@ import { databaseUrl, schemaSql } from '../constants';
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   readonly pool = new Pool({ connectionString: databaseUrl });
+
   async onModuleInit() {
     await this.pool.query(schemaSql);
   }
@@ -16,6 +17,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
 
   async transaction<T>(operation: (client: PoolClient) => Promise<T>) {
     const client = await this.pool.connect();
+
     try {
       await client.query('BEGIN');
       const result = await operation(client);

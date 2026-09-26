@@ -1,5 +1,3 @@
-import type { Response } from 'express';
-
 export type FlashcardStatus = 'unreviewed' | 'known' | 'learning';
 
 export interface Card {
@@ -93,5 +91,3 @@ export interface SessionInput {
 export interface StatusInput {
   status: FlashcardStatus;
 }
-
-export type GuestResponse = Response<unknown, { studyOwner: string }>;

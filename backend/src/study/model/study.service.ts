@@ -3,6 +3,8 @@ import { randomUUID } from 'node:crypto';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import type { PoolClient } from 'pg';
 
+import { DatabaseService } from '../../database/model/database.service';
+
 import { emptyProgress } from '../lib/learning';
 import { validateModule } from '../lib/modules';
 import type {
@@ -14,8 +16,6 @@ import type {
   ProgressRow,
   StudyModule,
 } from '../types';
-import { DatabaseService } from './database.service';
-
 @Injectable()
 export class StudyService {
   constructor(private readonly database: DatabaseService) {}

@@ -19,7 +19,7 @@ To run Node on the host instead:
 ```bash
 npm install
 docker compose -f compose.dev.yml up -d postgres
-npm run dev
+JWT_SECRET=local-development-jwt-secret-change-before-deploying npm run dev
 ```
 
 The default database URL is `postgresql://english_movies:english_movies@localhost:5432/english_movies`.
@@ -61,31 +61,37 @@ counting twice. Continue retries also preserve the next question. A new review s
 session while preserving historical mastery. Starting fresh resets mastery after confirmation but preserves
 attempt history. The separate confirmed **Reset all progress** action clears statuses, mastery, history, and session.
 
-## Ownership and persistence
+## Accounts and persistence
 
-The app has no account authentication. A server-issued, random, HttpOnly, SameSite=Lax guest cookie identifies a
-private browser owner; the backend checks ownership for every module operation. Clearing this cookie loses access
-to that browser's modules. Cross-device login and account recovery are not implemented. Do not use a shared browser
-profile for separate users. Set `COOKIE_SECURE=true` when serving through HTTPS.
+Register at `/register` with a name, email, and password of at least eight characters. Sign in at `/login` and open
+`/profile` to view account details or sign out. All app pages and non-auth API endpoints require an account. Passwords are
+hashed with scrypt. The backend signs a seven-day JWT and stores it in an HttpOnly, SameSite=Lax cookie; a JWT bearer
+header also works for API clients. Set `COOKIE_SECURE=true` when serving through HTTPS. Set `JWT_SECRET` to a random
+value of at least 32 characters and keep it stable across backend restarts. Losing this secret signs out existing
+sessions. Password recovery and token revocation are not included.
 
 PostgreSQL stores:
 
-- `study_owners`: opaque guest identities.
+- `users`: account names, normalized email addresses, password hashes, and creation dates.
 - `study_modules`: owner, timestamps, and a typed JSONB module document including ordered card content.
 - `study_cards`: stable card identifiers and module foreign keys, enabling cascading integrity.
 - `study_progress`: per-owner/card self-assessment, mastery, attempt counts, and last review time.
 - `study_sessions`: durable card snapshot, progress, question, feedback, review queue, and session statistics.
 
 Card deletion cascades its progress; module deletion cascades cards, progress, and session. Self-assessment never
-changes objective mastery, and Learn never changes self-assessment. Schema initialization is sufficient for the
-initial schema; future schema changes should use versioned migrations.
+changes objective mastery, and Learn never changes self-assessment. Schema initialization is idempotent for the
+account schema. Existing guest data is not migrated to accounts.
 
 ## API
 
-Frontend calls `/api/study/modules`; Vite and nginx proxy `/api` to NestJS.
+Frontend calls `/api/auth` and `/api/study/modules`; Vite and nginx proxy `/api` to NestJS.
 
 | Method | Backend path | Operation |
 | --- | --- | --- |
+| POST | `/auth/register` | Create an account and set the JWT cookie |
+| POST | `/auth/login` | Sign in and set the JWT cookie |
+| GET | `/auth/me` | Return the signed-in user's profile |
+| POST | `/auth/logout` | Clear the JWT cookie |
 | GET / POST | `/study/modules` | List private modules / atomically create a module |
 | GET / PATCH / DELETE | `/study/modules/:id` | Read module and progress / atomically edit / delete |
 | POST | `/study/modules/:id/cards` | Append a term and definition |
@@ -104,18 +110,18 @@ returns HTTP 400. Contracts are in the backend study types and frontend study en
 ```bash
 npm run lint
 npm run build
-docker compose config
+JWT_SECRET=local-development-jwt-secret-change-before-deploying docker compose config
 docker compose -f compose.dev.yml config
 ```
 
 ## Production containers
 
 ```bash
-docker compose up --build
+JWT_SECRET="$(openssl rand -hex 32)" docker compose up --build
 ```
 
-The containerized app is available at `http://localhost:8080`. Set `POSTGRES_PASSWORD` for deployment and
-`COOKIE_SECURE=true` behind HTTPS. Development and production Compose share the same project volume by default;
+The containerized app is available at `http://localhost:8080`. Persist the generated `JWT_SECRET` in deployment
+configuration, set `POSTGRES_PASSWORD`, and set `COOKIE_SECURE=true` behind HTTPS. Development and production Compose share the same project volume by default;
 use different Compose project names (`-p`) if they need separate databases.
 
 The video remains in the browser. Only subtitles are uploaded. MediaBunny trims the selected range locally, and

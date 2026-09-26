@@ -2,9 +2,10 @@ import { randomUUID } from 'node:crypto';
 
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 
+import { DatabaseService } from '../../database/model/database.service';
+
 import { advanceSession, answerSession, overrideSessionAnswer } from '../lib/learning';
 import type { SessionInput, SessionRow } from '../types';
-import { DatabaseService } from './database.service';
 import { StudyService } from './study.service';
 
 @Injectable()

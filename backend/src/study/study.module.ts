@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
 
-import { DatabaseService } from './model/database.service';
+import { AuthGuard } from '../auth/model/auth.guard';
+import { DatabaseModule } from '../database/database.module';
+import { UserModule } from '../user/user.module';
+
 import { LearnService } from './model/learn.service';
-import { GuestGuard } from './model/guest.guard';
 import { StudyService } from './model/study.service';
 import { StudyController } from './study.controller';
 
 @Module({
+  imports: [DatabaseModule, UserModule],
   controllers: [StudyController],
-  providers: [DatabaseService, GuestGuard, StudyService, LearnService],
+  providers: [AuthGuard, StudyService, LearnService],
 })
 export class StudyModule {}

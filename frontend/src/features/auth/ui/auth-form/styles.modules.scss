@@ -1,0 +1,52 @@
+@use '@shared/styles/breakpoints' as breakpoints;
+
+.form {
+  display: grid;
+  gap: 20px;
+
+  > button {
+    width: 100%;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+
+  label {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--color-input-background);
+    color: var(--color-text);
+
+    &:focus {
+      border-color: var(--color-field-border-active);
+    }
+  }
+}
+
+.switchMode {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  text-align: center;
+
+  a {
+    color: var(--color-accent);
+  }
+}
+
+@media (min-width: breakpoints.$small) {
+  .form {
+    gap: 22px;
+  }
+}
